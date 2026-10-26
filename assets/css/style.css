@@ -451,9 +451,10 @@ html.gl-fumee .fumee-css { display: none; }
 /* Final */
 .final { position: relative; overflow: clip; padding-block: clamp(110px, 16vw, 220px); text-align: center; }
 .final-fond { position: absolute; inset: 0; z-index: 0; }
-.final-fond img { position: absolute; left: 50%; top: 50%; width: min(1280px, 160vw); max-width: none; transform: translate(-50%, -42%); opacity: .5; }
+.final-fond > img { position: absolute; left: 50%; top: 50%; width: min(1280px, 160vw); max-width: none; transform: translate(-50%, -42%); opacity: .5; }
 .final-fond canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.final-fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(21, 17, 14, .3), var(--charbon) 78%); }
+.final-fond::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 45%, rgba(21, 17, 14, .3), var(--charbon) 78%); -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
+.final-fond canvas { z-index: 2; }
 .final .contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 28px; }
 .final h2 { font-size: clamp(3.4rem, 13vw, 13rem); }
 .final .choix { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -679,7 +680,7 @@ html.entree .passage { animation: secours 0s 3s forwards; }
 @keyframes secours { to { visibility: hidden; opacity: 0; } }
 html.nav-cachee .barre { top: env(safe-area-inset-top, 0px); }
 .acces-grille .bourg, .acces-grille .ocean { display: none; }
-.r-hero .photo-fond img { opacity: .5; }
+.r-hero .photo-fond img { opacity: .75; }
 html.calme .piste-wrap, html.sans-js .piste-wrap { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; scrollbar-color: var(--braise) transparent; }
 html.calme .recette, html.sans-js .recette { scroll-snap-align: start; }
 @media (max-width: 640px) {
@@ -690,4 +691,44 @@ html.calme .recette, html.sans-js .recette { scroll-snap-align: start; }
   .filtres .puce { white-space: nowrap; flex: none; }
   .recherche { order: -1; flex: 0 0 170px; max-width: 170px; }
   .recherche input { min-height: 38px; font-size: 16px; }
+}
+
+/* Images Grok (v2) */
+.hero-fond canvas { z-index: 1; }
+.hero-fond .grok-img img { opacity: .72; object-position: center bottom; }
+.fumee-fond canvas { position: absolute; inset: 0; z-index: 1; mix-blend-mode: screen; }
+.fumee-fond .grok-img img { opacity: .5; object-position: left bottom; }
+.fumee-fond.a-grok .fumee-css { display: none; }
+.farine.a-grok { background-image: none; opacity: .5; }
+.farine .grok-img img { object-position: right center; }
+.rn1-fond .grok-img img { opacity: .38; }
+.rn1-fond .trainee { z-index: 1; }
+.plan-travail .grok-img { z-index: 0; -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 71%); mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 71%); }
+.plan-travail.a-grok .pelle { display: none; }
+.plan-travail .pz-composer { z-index: 1; }
+.plan-travail .compteur { z-index: 2; }
+.plan-travail.a-grok .pz-composer { inset: 13.5%; width: 73%; height: 73%; }
+
+.etape-photo { position: absolute; z-index: 2; left: -4%; top: 3%; margin: 0; width: clamp(104px, 27%, 190px); aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--suie); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8), 0 0 0 1px var(--ligne); transform: rotate(-4deg); }
+.etape-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.etape-photo .e2 { opacity: 0; }
+@media (max-width: 900px) { .etape-photo { left: 0; top: 0; } }
+
+.lit-braises { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 40%; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 75%); mask-image: linear-gradient(180deg, transparent 0%, #000 75%); opacity: .72; mix-blend-mode: screen; animation: braiser 4.5s ease-in-out infinite alternate; }
+.lit-braises img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes braiser { from { filter: brightness(.8) saturate(1); } to { filter: brightness(1.15) saturate(1.2); } }
+
+.service { position: relative; overflow: hidden; isolation: isolate; min-height: 280px; justify-content: flex-end; }
+.service .fond { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .85; }
+.service::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(29, 23, 19, .1) 0%, rgba(29, 23, 19, .55) 45%, rgba(29, 23, 19, .96) 85%); }
+
+.r-grille { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(20px, 4vw, 64px); align-items: end; }
+.r-photo { position: relative; margin: 0; width: 100%; max-height: 66svh; justify-self: end; border-radius: 26px; overflow: hidden; background: var(--suie); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .85), 0 0 0 1px var(--ligne); transform: rotate(1.5deg); }
+.r-photo.large { align-self: center; }
+.r-photo img { width: 100%; height: 100%; object-fit: cover; }
+.r-photo figcaption { position: absolute; left: 14px; bottom: 12px; right: 14px; font-size: .72rem; color: var(--creme); text-shadow: 0 1px 6px #000; }
+@media (max-width: 900px) {
+  .r-hero { min-height: 0; }
+  .r-grille { grid-template-columns: 1fr; }
+  .r-photo { order: -1; transform: none; max-height: 44svh; justify-self: stretch; }
 }

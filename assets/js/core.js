@@ -424,16 +424,21 @@
 
   /* ---------- Images Grok (arrivent plus tard) ---------- */
   function grok() {
+    var has = function (n) { return !!(n && D.grok[n]); };
+    var set = function (n) { return D.grok[n].map(function (w) { return 'assets/img/grok/' + n + '-' + w + '.webp ' + w + 'w'; }).join(', '); };
+    var src = function (n) { var w = D.grok[n]; return 'assets/img/grok/' + n + '-' + w[w.length - 1] + '.webp'; };
     $$('[data-grok]').forEach(function (el) {
       if (el.querySelector('.grok-img')) return;
       var d = el.getAttribute('data-grok'), m = el.getAttribute('data-grok-m');
-      var has = function (n) { return n && D.grok.indexOf(n) >= 0; };
       if (!has(d) && !has(m)) return;
+      var principal = has(d) ? d : m;
       var pic = doc.createElement('picture'); pic.className = 'grok-img';
-      pic.innerHTML = (has(m) ? '<source media="(max-width: 760px)" srcset="assets/img/grok/' + m + '.webp">' : '') + '<img alt="" loading="lazy" decoding="async" src="assets/img/grok/' + (has(d) ? d : m) + '.webp">';
+      pic.innerHTML = (has(m) && has(d) ? '<source media="(max-width: 760px)" srcset="' + set(m) + '" sizes="100vw">' : '') +
+        '<img alt="" decoding="async"' + (el.hasAttribute('data-grok-vite') ? ' fetchpriority="high"' : ' loading="lazy"') + ' src="' + src(principal) + '" srcset="' + set(principal) + '" sizes="' + (el.getAttribute('data-grok-taille') || '100vw') + '">';
       el.appendChild(pic); el.classList.add('a-grok');
     });
   }
+  PL.grok = grok;
 
   /* ---------- Montage des animations ---------- */
   var montages = [], jetables = [], ctx = null;
@@ -597,7 +602,7 @@
     var esc = PL.esc;
     var pts = BOURGS.map(function (b) { return proj(b[1], b[2]); });
     var H = 1000 / 3.4, d = cheminLisse(pts);
-    box.innerHTML = '<div class="rn1-fond" data-grok="g-route-nuit-16x9" data-grok-m="g-route-nuit-9x16"><i class="trainee" style="top:58%"></i><i class="trainee" style="top:66%;animation-delay:-2.5s;animation-duration:8s"></i><i class="trainee" style="top:48%;animation-delay:-4s;animation-duration:7s"></i></div>' +
+    box.innerHTML = '<div class="rn1-fond" data-grok="g-route-nuit-16x9" data-grok-taille="90vw"><i class="trainee" style="top:58%"></i><i class="trainee" style="top:66%;animation-delay:-2.5s;animation-duration:8s"></i><i class="trainee" style="top:48%;animation-delay:-4s;animation-duration:7s"></i></div>' +
       '<svg viewBox="0 0 1000 ' + H.toFixed(0) + '" preserveAspectRatio="none" aria-hidden="true">' +
       '<path d="' + d + '" fill="none" stroke="rgba(245,235,221,.12)" stroke-width="10" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
       '<path class="route" d="' + d + '" fill="none" stroke="#FF5B1F" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 6px rgba(255,91,31,.8))"/>' +

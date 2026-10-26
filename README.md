@@ -17,7 +17,8 @@ Le bouton « Commander pour de vrai » renvoie vers la page de commande actuelle
 ## Données
 
 Toute la carte, les adresses, téléphones et horaires sont dans `assets/js/data.js` (relevé du site actuel, octobre 2026).
-Les images Grok, une fois livrées, se déposent dans `assets/img/grok/` et s’ajoutent à la liste `grok` du même fichier.
+Les images d’ambiance générées avec Grok sont dans `assets/img/grok/` (braises, fumée, farine, route de nuit, lumières, pelle, légumes, pâtes, fruits).
+Aucune ne montre un plat présenté comme une recette de la maison, ni une personne reconnaissable.
 
 ## À compléter avec la pizzeria
 

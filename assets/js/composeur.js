@@ -98,6 +98,7 @@
       }
     });
     maj();
+    if (PL.grok) PL.grok();
     return { svg: svg };
   };
 })();

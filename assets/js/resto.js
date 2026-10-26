@@ -46,8 +46,11 @@
     var h1 = $('.r-hero h1');
     if (h1 && window.SplitText) SplitText.create(h1, { type: 'lines, chars', mask: 'lines', autoSplit: true, onSplit: function (s) { return gsap.from(s.chars, { yPercent: 115, duration: 1.2, ease: 'expo.out', stagger: .035, delay: .15 }); } });
     gsap.from('.r-hero .infos-l > *, .r-hero .actions > *, .r-hero .eyebrow', { y: 24, opacity: 0, duration: .9, stagger: .07, ease: 'power3.out', delay: .5 });
-    gsap.fromTo('.r-hero .photo-fond img', { scale: 1.15 }, { scale: 1, duration: 2.4, ease: 'expo.out' });
+    gsap.fromTo('.r-hero .photo-fond img', { scale: 1.2 }, { scale: 1, duration: 3, ease: 'expo.out' });
     gsap.to('.r-hero .photo-fond img', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.r-hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.from('.r-photo', { y: 70, rotate: 9, opacity: 0, duration: 1.5, ease: 'expo.out', delay: .35 });
+    gsap.fromTo('.r-photo img', { yPercent: -5, scale: 1.12 }, { yPercent: 5, scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.r-hero', start: 'top top', end: 'bottom top', scrub: true } });
+    $$('.service .fond').forEach(function (im) { gsap.fromTo(im, { scale: 1.25 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: im.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } }); });
 
     $$('.service svg').forEach(function (svg) {
       var traits = $$('path, line, rect, circle', svg);

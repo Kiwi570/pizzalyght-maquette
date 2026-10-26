@@ -194,11 +194,17 @@
           ? { trigger: scene, start: 'top top', end: '+=230%', pin: true, scrub: .8, anticipatePin: 1, onUpdate: function (s) { var p = s.progress; etape(p < .28 ? 0 : p < .52 ? 1 : p < .8 ? 2 : 3); } }
           : { trigger: '.atelier', start: 'top 85%', end: 'bottom 25%', scrub: .6, onUpdate: function (s) { var p = s.progress; etape(p < .28 ? 0 : p < .52 ? 1 : p < .8 ? 2 : 3); } }
       });
+      gsap.set('.etape-photo', { opacity: 0, y: 40, rotate: -10 });
+      gsap.set('.etape-photo .e2', { opacity: 0 });
       tl2.to($('.pate', sv), { scale: 1, rotation: 25, duration: 1, ease: 'power2.out' })
+        .to('.etape-photo', { opacity: 1, y: 0, rotate: -4, duration: .5, ease: 'power3.out' }, 0)
         .to($$('.farine circle', sv), { opacity: 0, x: function () { return gsap.utils.random(-30, 30); }, y: function () { return gsap.utils.random(-30, 30); }, duration: .8, stagger: .005 }, '<')
         .to(spi, { strokeDashoffset: 0, duration: 1.2, ease: 'power1.inOut' })
+        .to('.etape-photo .e2', { opacity: 1, duration: .35 }, '<')
+        .to('.etape-photo', { rotate: 3, duration: 1.2 }, '<')
         .to($('.nappe', sv), { opacity: 1, duration: .3 }, '-=.2')
-        .to($$('.fromage path', sv), { opacity: .8, scale: 1, duration: .8, stagger: { each: .012, from: 'random' }, ease: 'back.out(2)' })
+        .to('.etape-photo', { opacity: 0, y: -40, duration: .4 })
+        .to($$('.fromage path', sv), { opacity: .8, scale: 1, duration: .8, stagger: { each: .012, from: 'random' }, ease: 'back.out(2)' }, '<')
         .to($$('.garni .pc', sv), { opacity: 1, y: '+=60', duration: .7, stagger: { each: .02, from: 'random' }, ease: 'bounce.out' }, '-=.2')
         .to($('.doree', sv), { opacity: 1, duration: .6 })
         .to('.atelier .photo-finale', { opacity: 1, duration: .7 }, '+=.1')

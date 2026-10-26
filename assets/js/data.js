@@ -135,7 +135,7 @@
     },
     {
       id: 'salades-a-composer', titre: 'Salades à composer', accroche: 'Une base, des crudités, des protéines, des toppings.',
-      photo: { base: 'bar-a-salades', w: [640, 1280], alt: 'Bacs de crudités d’un bar à salades' },
+      photo: { base: 'grok/g-legumes-frais-16x9', w: [640, 1168], alt: 'Laitue, tomates, avocat, mangue et maïs frais (illustration)' },
       items: [
         I('Petite salade 1', '1 base, 3 crudités au choix', 990),
         I('Grande salade 1', '1 base, 5 crudités au choix', 1190),
@@ -147,7 +147,7 @@
     },
     {
       id: 'pates', titre: 'Pâtes', accroche: 'Préparées à la commande.',
-      photo: { base: 'tagliatelles-bolognaise', w: [640, 1280], alt: 'Tagliatelles à la bolognaise' },
+      photo: { base: 'grok/g-pates-seches-16x9', w: [640, 1168], alt: 'Nids de tagliatelles et semoule (illustration)' },
       items: [
         I('Lasagnes', 'recette ' + A_COMPLETER, 1590),
         I('Tagliatelles', 'recette ' + A_COMPLETER, 1190)
@@ -215,7 +215,7 @@
     },
     {
       id: 'boissons', titre: 'Boissons', accroche: 'Dont des jus locaux préparés sur place avec des fruits frais.',
-      photo: { base: 'boissons-bouteilles', w: [640, 1280], alt: 'Bouteilles de sodas de couleurs' },
+      photo: { base: 'grok/g-fruits-locaux-16x10', w: [640, 784], alt: 'Fruits de la passion et ananas (illustration)' },
       items: [
         I('Jus local', 'préparé sur place avec des fruits frais', null, { prixNote: 'prix ' + A_COMPLETER }),
         I('Coca', '', 200),
@@ -249,8 +249,15 @@
   });
 
   /* Images Grok déjà livrées (nom de fichier sans extension). Vide tant qu'elles ne sont pas arrivées :
-     les emplacements gardent leur visuel provisoire dessiné en code. */
-  var grok = [];
+     les emplacements gardent leur visuel provisoire dessiné en code. Nom du fichier -> largeurs disponibles. */
+  var grok = {
+    'g-hero-braises-16x9': [800, 1168], 'g-hero-braises-9x16': [657],
+    'g-fumee-boucan-16x9': [800, 1168], 'g-fumee-noir-9x16': [657],
+    'g-farine-texture-16x9': [1168],
+    'g-route-nuit-16x9': [800, 1168],
+    'g-bokeh-chaud-16x9': [800, 1168], 'g-bokeh-chaud-9x16': [657],
+    'g-pelle-bois-1x1': [702]
+  };
 
   window.PL = window.PL || {};
   window.PL.data = {
