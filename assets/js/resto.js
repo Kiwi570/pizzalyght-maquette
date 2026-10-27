@@ -4,7 +4,6 @@
   var main = $('main[data-ville]'); if (!main) return;
   var id = main.getAttribute('data-ville'), r = PL.resto(id);
 
-  $$('img[data-pizza]').forEach(function (img) { var it = PL.trouverItem(img.getAttribute('data-pizza')); if (it) img.src = PL.art.dataUri(it); });
   PL.rn1($('.rn1-carte'), { focus: id });
 
   /* Cadran 24 h : minuit en haut, les créneaux d'ouverture en braise, l'aiguille sur l'heure de Guyane */

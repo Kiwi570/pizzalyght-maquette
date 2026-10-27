@@ -27,6 +27,8 @@ Aucune ne montre un plat présenté comme une recette de la maison, ni une perso
 - allergènes et origine des viandes (obligatoires avant une commande en ligne)
 - zones et frais de livraison
 - base et liste des ingrédients de la pizza Allasani
+- produits proposés dans les formules (pizzas, boissons, desserts)
+- mentions à confirmer : « pâte et sauce tomate maison », « pizzas artisanales », « pain maison »
 - recettes des lasagnes et tagliatelles, prix du jus local, différence entre salades 2 et 3
 - photos des pizzas, des restaurants et de l’équipe
 

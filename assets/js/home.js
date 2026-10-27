@@ -9,7 +9,7 @@
   function tags(p) {
     var r = PL.art.parse(p.ing), t = [];
     if (/boucan/i.test(p.ing)) t.push('<span class="tag boucan">Boucané</span>');
-    if (r.garnitures.some(function (g) { return /crevettes|saumon|thon|anchois|moules|fruits|poisson/.test(g); })) t.push('<span class="tag">De la mer</span>');
+    if (r.garnitures.some(function (g) { return /crevettes|saumon|thon|anchois|moules|fruits|poisson/.test(g); })) t.push('<span class="tag">Poisson, fruits de mer</span>');
     return t.join('');
   }
   function geant(nom) { return nom.replace('Pizza ', '').replace('Saint Laurentaise', 'St-Laurent'); }
@@ -22,11 +22,11 @@
       return '<article class="recette" data-art data-incline>' +
         '<span class="nom-geant" aria-hidden="true">' + esc(geant(p.nom)) + '</span>' +
         '<div class="art">' + (boucan ? '<svg class="volute" viewBox="0 0 100 80" aria-hidden="true"><path d="M30,80C20,60 44,50 34,30S40,6 32,0"/><path d="M52,80C44,62 64,52 56,34S62,10 56,2"/><path d="M72,80C64,64 82,54 74,38"/></svg>' : '') +
-        '<img alt="Illustration de la ' + esc(p.nom) + '" src="' + PL.art.dataUri(p) + '" width="300" height="300"></div>' +
+        '<img alt="Illustration de la ' + esc(p.nom) + '" src="' + PL.visuelPizza(p.id) + '" width="300" height="300" loading="lazy" decoding="async"></div>' +
         '<div class="tags">' + tags(p) + '</div>' +
         '<h3>' + esc(p.nom.replace('Pizza ', '')) + '</h3>' +
         '<p class="ing">' + esc(p.ing.charAt(0).toUpperCase() + p.ing.slice(1)) + '</p>' +
-        '<div class="bas"><span class="prix">' + euro(p.prix) + '</span><button class="ajout texte" type="button" data-ajouter="' + p.id + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Ajouter</button></div>' +
+        '<div class="bas"><span class="prix">' + euro(p.prix) + '</span><button class="ajout texte" type="button" data-ajouter="' + p.id + '" aria-label="Ajouter la ' + esc(p.nom) + ' au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Ajouter</button></div>' +
         '</article>';
     }).join('');
   }
@@ -38,7 +38,7 @@
       var min = Math.min.apply(null, prix);
       var w = c.photo.w, grand = w[w.length - 1];
       return '<a class="cat" href="carte.html#' + c.id + '" data-incline>' +
-        '<span class="img"><img alt="' + esc(c.photo.alt) + '" src="assets/img/' + c.photo.base + '-' + w[0] + '.webp" srcset="' + w.map(function (x) { return 'assets/img/' + c.photo.base + '-' + x + '.webp ' + x + 'w'; }).join(', ') + '" sizes="(max-width: 900px) ' + (i === 0 ? '100vw' : '50vw') + ', ' + (i === 0 ? '58vw' : '40vw') + '" loading="lazy" decoding="async" width="' + grand + '" height="' + Math.round(grand * .7) + '"></span>' +
+        '<span class="img"><img alt="" src="assets/img/' + c.photo.base + '-' + w[0] + '.webp" srcset="' + w.map(function (x) { return 'assets/img/' + c.photo.base + '-' + x + '.webp ' + x + 'w'; }).join(', ') + '" sizes="(max-width: 900px) ' + (i === 0 ? '100vw' : '50vw') + ', ' + (i === 0 ? '58vw' : '40vw') + '" loading="lazy" decoding="async" width="' + grand + '" height="' + Math.round(grand * .7) + '"></span>' +
         '<span class="brule-bord" aria-hidden="true"></span>' +
         '<span class="fleche" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
         '<span class="txt"><h3>' + esc(c.titre) + '</h3><span class="meta"><b>dès ' + euro(min) + '</b>' + c.items.length + ' choix</span></span></a>';
@@ -55,7 +55,7 @@
       var parts = x.desc.split(/,\s*/);
       var html = '<div class="palier" data-art><div><h3>' + esc(x.nom) + '</h3></div>' +
         '<div class="compo">' + parts.map(function (p) { var neuf = avant.length && avant.indexOf(p) < 0; return '<span class="' + (neuf ? 'plus' : '') + '">' + (neuf ? '+ ' : '') + esc(p) + '</span>'; }).join('') + '</div>' +
-        '<div class="droite"><span class="prix" data-odo="' + x.prix + '">' + euro(x.prix) + '</span><button class="btn small" type="button" data-ajouter="' + x.id + '" data-detail="Choix de la pizza, du jus ou du dessert à préciser">Ajouter</button></div></div>';
+        '<div class="droite"><span class="prix" data-odo="' + x.prix + '">' + euro(x.prix) + '</span><button class="btn small" type="button" data-formule="' + x.id + '" aria-label="Choisir et ajouter : ' + esc(x.nom) + '">Choisir et ajouter</button></div></div>';
       avant = parts;
       return html;
     }).join('');
@@ -92,12 +92,6 @@
     }).join('');
   }
 
-  document.addEventListener('click', function (e) {
-    var c = e.target.closest('[data-commander]'); if (!c) return;
-    PL.setVille(c.getAttribute('data-commander'), true);
-    var a = document.createElement('a'); a.href = 'carte.html'; document.body.appendChild(a); a.click(); a.remove();
-  });
-
   /* Montage de l'atelier « fait maison » */
   function atelier() {
     var box = $('.atelier .montage'); if (!box) return;
@@ -121,35 +115,40 @@
 
   /* ---------- Animations ---------- */
   PL.auMontage(function (calme) {
-    var gl = !calme && PL.glOk && PL.glOk();
+    /* WebGL seulement avec une souris : sur téléphone, la cuisson se fait en CSS (bien plus léger). */
+    var gl = !calme && PL.glOk && PL.glOk() && matchMedia('(pointer: fine)').matches;
     var intro = html.classList.contains('intro') && !calme;
-    var t0 = intro ? 1.6 : .15;
+    var t0 = intro ? 1.3 : .15;
 
     /* Ouverture */
     if (intro) {
       var ov = $('.ouverture');
-      var tl = gsap.timeline({ onComplete: function () { html.classList.remove('intro'); try { sessionStorage.setItem('pl-intro', '1'); } catch (e) { } } });
-      tl.fromTo('.ouverture .fente', { scale: 0 }, { scale: 1, duration: .35, ease: 'back.out(3)' })
-        .to('.ouverture .fente', { width: '64vw', marginLeft: '-32vw', height: 3, marginTop: -1.5, duration: .55, ease: 'expo.inOut' })
-        .to('.ouverture img', { opacity: 1, y: -18, duration: .5, ease: 'power3.out' }, '-=.25')
-        .to(ov, { clipPath: 'inset(50% 0 50% 0)', duration: .6, ease: 'expo.inOut' }, '+=.15');
-      PL.jeter(function () { html.classList.remove('intro'); });
+      var finIntro = function () { html.classList.remove('intro'); try { localStorage.setItem('pl-intro-vu', String(Date.now())); sessionStorage.setItem('pl-intro', '1'); } catch (e) { } };
+      var tl = gsap.timeline({ onComplete: finIntro });
+      tl.fromTo('.ouverture .fente', { scale: 0 }, { scale: 1, duration: .3, ease: 'back.out(3)' })
+        .to('.ouverture .fente', { width: '64vw', marginLeft: '-32vw', height: 3, marginTop: -1.5, duration: .45, ease: 'expo.inOut' })
+        .to('.ouverture img', { opacity: 1, y: -18, duration: .4, ease: 'power3.out' }, '-=.2')
+        .to(ov, { clipPath: 'inset(50% 0 50% 0)', duration: .5, ease: 'expo.inOut' }, '+=.1');
+      /* Un geste suffit pour passer l'ouverture */
+      var passer = function () { if (tl.progress() < 1) tl.progress(1); };
+      ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) { window.addEventListener(ev, passer, { once: true, passive: true }); });
+      PL.jeter(function () { ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) { window.removeEventListener(ev, passer); }); finIntro(); });
     } else { html.classList.remove('intro'); }
 
     /* Pizza qui cuit */
     var can = $('.pizza-tourne canvas'), img = $('.pizza-tourne img.base');
     if (gl && can) {
       try {
-        var c = PL.cuisson(can, 'assets/img/pizza-detouree-800.webp');
-        c.pret.then(function () { html.classList.add('gl'); gsap.to(c.uniforms.uCuit, { value: 1, duration: 2.4, ease: 'power2.inOut', delay: t0 }); });
-        PL.jeter(function () { c.stop(); html.classList.remove('gl'); });
+        var c = PL.cuisson(can, 'assets/img/pizza-detouree-800.webp'), arrete = false;
+        c.pret.then(function () { if (arrete) return; html.classList.add('gl'); gsap.to(c.uniforms.uCuit, { value: 1, duration: 2.4, ease: 'power2.inOut', delay: t0 }); });
+        PL.jeter(function () { arrete = true; c.stop(); html.classList.remove('gl'); });
       } catch (e) { gl = false; }
     }
     if (!gl && img) { img.classList.remove('cuisson-css'); void img.offsetWidth; if (!calme) img.classList.add('cuisson-css'); }
 
     if (!calme) {
-      gsap.to('.pizza-tourne', { rotation: 360, duration: 120, repeat: -1, ease: 'none' });
-      gsap.to('.anneau-texte', { rotation: -360, duration: 60, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+      var tourne = [gsap.to('.pizza-tourne', { rotation: 360, duration: 120, repeat: -1, ease: 'none' }), gsap.to('.anneau-texte', { rotation: -360, duration: 60, repeat: -1, ease: 'none', transformOrigin: '50% 50%' })];
+      ScrollTrigger.create({ trigger: '.hero', start: 'top bottom', end: 'bottom top', onToggle: function (s) { tourne.forEach(function (t) { t.paused(!s.isActive); }); } });
       gsap.from('.hero-visuel', { scale: .7, opacity: 0, duration: 1.6, ease: 'expo.out', delay: t0 - .1 });
       gsap.from('.four-halo', { opacity: 0, scale: .5, duration: 2, ease: 'power2.out', delay: t0 });
       gsap.to('.hero-visuel', { yPercent: 18, scale: .88, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -162,14 +161,14 @@
       gsap.from('.vivant > *', { y: 30, opacity: 0, duration: .9, ease: 'power3.out', stagger: .08, delay: t0 + .6 });
 
       /* Braises */
-      var bc = $('.hero-fond canvas'); if (bc) PL.jeter(PL.braises(bc, { n: desktop() ? 80 : 40, suivre: true }));
-      var fc = $('.final-fond canvas'); if (fc) PL.jeter(PL.braises(fc, { n: desktop() ? 90 : 44, suivre: true, vitesse: 1.2 }));
+      var bc = $('.hero-fond canvas'); if (bc) PL.jeter(PL.braises(bc, { n: desktop() ? 70 : 26, suivre: true }));
+      var fc = $('.final-fond canvas'); if (fc) PL.jeter(PL.braises(fc, { n: desktop() ? 70 : 28, suivre: true, vitesse: 1.2 }));
 
       /* Bandeau défilant, accéléré par la vitesse de défilement */
       var piste = $('.defile-piste');
       if (piste) {
         var boucle = gsap.to(piste, { xPercent: -50, duration: 28, ease: 'none', repeat: -1 });
-        var st = ScrollTrigger.create({ trigger: '.defile', start: 'top bottom', end: 'bottom top', onUpdate: function (s) { var v = Math.min(4, 1 + Math.abs(s.getVelocity()) / 400); gsap.to(boucle, { timeScale: s.direction < 0 ? -v : v, duration: .3, overwrite: true }); gsap.to(boucle, { timeScale: s.direction < 0 ? -1 : 1, duration: 1.2, delay: .3, overwrite: false }); } });
+        var st = ScrollTrigger.create({ trigger: '.defile', start: 'top bottom', end: 'bottom top', onToggle: function (s) { boucle.paused(!s.isActive); }, onUpdate: function (s) { var v = Math.min(4, 1 + Math.abs(s.getVelocity()) / 400); gsap.to(boucle, { timeScale: s.direction < 0 ? -v : v, duration: .3, overwrite: true }); gsap.to(boucle, { timeScale: s.direction < 0 ? -1 : 1, duration: 1.2, delay: .3, overwrite: false }); } });
       }
     }
 
@@ -220,14 +219,25 @@
     }
 
     /* Le goût du pays : galerie horizontale + fumée */
-    var fumee = $('.fumee-fond canvas');
-    if (fumee && gl) { try { var fm = PL.fumee(fumee); html.classList.add('gl-fumee'); PL.jeter(function () { fm.stop(); html.classList.remove('gl-fumee'); }); } catch (e) { } }
+    /* Fumée : l'image Grok dérive lentement, seulement quand la section est à l'écran */
+    var fimg = $('.fumee-fond .grok-img img');
+    if (fimg && !calme) gsap.fromTo(fimg, { scale: 1.04, yPercent: 2 }, { scale: 1.16, yPercent: -5, xPercent: -2, duration: 12, ease: 'sine.inOut', yoyo: true, repeat: -1, scrollTrigger: { trigger: '.pays', start: 'top bottom', end: 'bottom top', toggleActions: 'play pause resume pause' } });
     var pays = $('.pays-scene'), piste2 = $('.piste');
     if (pays && piste2 && !calme) {
       var mm = gsap.matchMedia();
       mm.add('(min-width: 761px)', function () {
         var dist = function () { return Math.max(0, piste2.scrollWidth - $('.piste-wrap').clientWidth); };
         var tw = gsap.to(piste2, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: pays, start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: .6, invalidateOnRefresh: true, anticipatePin: 1 } });
+        /* Au clavier : amener la carte qui prend le focus dans l'écran */
+        var auFocus = function (e) {
+          var card = e.target.closest('.recette'); if (!card) return;
+          var st = tw.scrollTrigger, d = dist(); if (!d) return;
+          var x = card.offsetLeft - ($('.piste-wrap').clientWidth - card.offsetWidth) / 2;
+          var y = st.start + (st.end - st.start) * Math.max(0, Math.min(1, x / d));
+          if (PL.lenis) PL.lenis.scrollTo(y, { immediate: true }); else window.scrollTo(0, y);
+        };
+        piste2.addEventListener('focusin', auFocus);
+        PL.jeter(function () { piste2.removeEventListener('focusin', auFocus); });
         $$('.recette', piste2).forEach(function (card, i) {
           gsap.fromTo($('.art img', card), { rotation: -40 - i * 8 }, { rotation: 80, ease: 'none', scrollTrigger: { trigger: card, containerAnimation: tw, start: 'left right', end: 'right left', scrub: true } });
           gsap.fromTo($('.nom-geant', card), { xPercent: 10 }, { xPercent: -30, ease: 'none', scrollTrigger: { trigger: card, containerAnimation: tw, start: 'left right', end: 'right left', scrub: true } });

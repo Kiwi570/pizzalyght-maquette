@@ -81,7 +81,7 @@
       if (p) {
         var cle = p.getAttribute('data-ing'), on = p.getAttribute('aria-pressed') === 'true';
         if (on) { sel = sel.filter(function (x) { return x !== cle; }); p.setAttribute('aria-pressed', 'false'); retirer(cle); }
-        else if (sel.length < MAX) { sel.push(cle); p.setAttribute('aria-pressed', 'true'); poser(cle); }
+        else if (sel.length < MAX) { sel.push(cle); p.setAttribute('aria-pressed', 'true'); poser(cle); if (sel.length === MAX) PL.message('8 ingrédients choisis : votre Allasani est complète'); }
         maj(); return;
       }
       if (e.target.closest('[data-vider]')) {
@@ -90,7 +90,7 @@
         maj(); return;
       }
       if (e.target.closest('[data-allasani]') && sel.length) {
-        var noms = sel.map(function (c) { var b = racine.querySelector('.puce[data-ing="' + c + '"]'); return b.getAttribute('data-nom'); });
+        var noms = sel.map(function (c) { var b = racine.querySelector('.puce[data-ing="' + c + '"]'); return b.getAttribute('data-nom'); }).sort(function (a, b) { return a.localeCompare(b, 'fr'); });
         var tmp = svg.cloneNode(true);
         var src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(tmp));
         PL.ajouter(ID_ALLASANI, { from: svg, visuel: src, detail: noms.join(', ') });

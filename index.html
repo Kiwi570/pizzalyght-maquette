@@ -11,27 +11,34 @@
 <meta property="og:title" content="Pizza Lyght Guyane">
 <meta property="og:description" content="Pizzas artisanales, pâte et sauce tomate maison, à Cayenne, Kourou et Saint-Laurent-du-Maroni. À emporter, en livraison ou sur place à Kourou.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/img/pizza-planche-part-1000.webp">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Pizza Lyght">
+<meta property="og:url" content="https://pizzalyght-maquette.vercel.app/">
+<meta property="og:image" content="https://pizzalyght-maquette.vercel.app/og-pizza-lyght.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pizza Lyght : l’important c’est le goût">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
-<script>(function(d){var h=d.documentElement;h.classList.remove('sans-js');var c=null;try{c=JSON.parse(localStorage.getItem('pl-calme'))}catch(e){}if(c===null)c=matchMedia('(prefers-reduced-motion: reduce)').matches;if(c)h.classList.add('calme');var intro=false;if(!c){try{intro=!sessionStorage.getItem('pl-intro')}catch(e){intro=true}}if(intro)h.classList.add('intro');try{if(!c&&!intro&&sessionStorage.getItem('pl-passage'))h.classList.add('entree')}catch(e){}})(document)</script>
+<script>(function(d){var h=d.documentElement;h.classList.remove('sans-js');var c=null;try{c=JSON.parse(localStorage.getItem('pl-calme'))}catch(e){}if(c===null)c=matchMedia('(prefers-reduced-motion: reduce)').matches;if(c)h.classList.add('calme');var intro=false;if(!c){try{var v=+localStorage.getItem('pl-intro-vu')||0;intro=!sessionStorage.getItem('pl-intro')&&(Date.now()-v>6048e5)}catch(e){intro=false}}if(intro)h.classList.add('intro');try{if(!c&&!intro&&sessionStorage.getItem('pl-passage'))h.classList.add('entree')}catch(e){}})(document)</script>
 </head>
 <body data-page="accueil">
 <div class="ouverture" aria-hidden="true"><span class="fente"></span><img src="assets/img/logo-pizza-lyght-crop-480.webp" alt="" width="220" height="146"></div>
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="nav">
   <a class="logo" href="index.html" aria-label="Pizza Lyght, accueil"><img src="assets/img/logo-pizza-lyght-crop-240.webp" srcset="assets/img/logo-pizza-lyght-crop-240.webp 1x, assets/img/logo-pizza-lyght-crop-480.webp 2x" alt="Pizza Lyght" width="96" height="64"></a>
-  <ul class="nav-liens"><li><a class="lien" href="carte.html">La carte</a></li><li><a class="lien" href="cayenne.html">Cayenne</a></li><li><a class="lien" href="kourou.html">Kourou</a></li><li><a class="lien" href="saint-laurent.html">Saint-Laurent</a></li></ul>
+  <nav aria-label="Navigation principale"><ul class="nav-liens"><li><a class="lien" href="carte.html">La carte</a></li><li><a class="lien" href="cayenne.html">Cayenne</a></li><li><a class="lien" href="kourou.html">Kourou</a></li><li><a class="lien" href="saint-laurent.html">Saint-Laurent</a></li></ul></nav>
   <div class="nav-droite">
-    <button class="pilule ville-btn" type="button" data-appel aria-label="Nos pizzerias : statut, horaires et téléphones"><span class="statut"><span class="pt" aria-hidden="true"></span><span>Nos pizzerias</span></span></button>
+    <button class="pilule ville-btn" type="button" data-appel><span class="statut"><span class="pt" aria-hidden="true"></span><span>Nos pizzerias</span></span><span class="sr-only"> : horaires et téléphones</span></button>
     <button class="pilule calme-btn" type="button" aria-pressed="false" title="Couper les animations"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="lbl">Mode calme</span><span class="sr-only"> (couper les animations)</span></button>
     <button class="pilule panier-btn" type="button" data-panier>Panier <span class="nb" data-n="0">0</span></button>
   </div>
 </header>
-<main id="contenu">
+<main id="contenu" tabindex="-1">
   <section class="hero wrap" aria-labelledby="titre-hero">
     <div class="hero-fond" data-grok="g-hero-braises-16x9" data-grok-m="g-hero-braises-9x16" data-grok-vite><canvas aria-hidden="true"></canvas></div>
     <div class="hero-grille max" style="width:100%">
@@ -67,7 +74,7 @@
     <div class="maison-scene wrap">
       <div class="farine" data-grok="g-farine-texture-16x9" aria-hidden="true"></div>
       <div class="etapes">
-        <span class="eyebrow">Fait maison</span>
+        <span class="eyebrow">La pâte, la sauce</span>
         <h2 id="titre-maison" data-titre>Pâte et sauce tomate maison</h2>
         <p class="lead">Nos pizzas sont faites artisanalement, élaborées avec des produits frais.</p>
         <ol class="etape-liste">
@@ -88,12 +95,13 @@
 
   <section class="pays" id="pays" aria-labelledby="titre-pays">
     <div class="pays-scene wrap">
-      <div class="fumee-fond" data-grok="g-fumee-boucan-16x9" data-grok-m="g-fumee-noir-9x16" aria-hidden="true"><canvas></canvas><div class="fumee-css"><i></i><i></i><i></i></div></div>
+      <div class="fumee-fond" data-grok="g-fumee-boucan-16x9" data-grok-m="g-fumee-noir-9x16" aria-hidden="true"><div class="fumee-css"><i></i><i></i><i></i></div></div>
       <div class="pays-tete max" style="width:100%">
-        <div style="display:flex;flex-direction:column;gap:16px"><span class="eyebrow">Recettes du pays</span><h2 id="titre-pays" data-titre>Le goût du boucan</h2></div>
-        <p class="lead">Créole, Maroni, Matoury, Cayennaise, Kouroucienne, Mananaise, Saint-Laurentaise : poulet boucané, poissons boucanés, saucisses boucanées.</p>
+        <div style="display:flex;flex-direction:column;gap:16px"><span class="eyebrow">Recettes du pays</span><h2 id="titre-pays" data-titre>Le goût du pays</h2></div>
+        <p class="lead">Sept recettes aux noms de la Guyane, dont quatre au boucané : poulet, poissons ou saucisses.</p>
       </div>
       <div class="piste-wrap"><div class="piste"></div></div>
+      <p class="glisser" aria-hidden="true">Faites glisser pour voir les 7 recettes <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
       <p class="small muted" style="margin-top:20px;position:relative;z-index:2">Illustrations dessinées d’après la composition de chaque pizza.</p>
     </div>
   </section>
@@ -122,7 +130,7 @@
     <div class="max">
       <div class="tete">
         <div class="gauche"><span class="eyebrow">Formules</span><h2 id="titre-formules" data-titre>Le repas complet</h2></div>
-        <div class="droite"><p class="lead">Avec un jus local ou une canette, et un dessert. À partir de 11,90&nbsp;€.</p></div>
+        <div class="droite"><p class="lead">Pizza, salade ou pâtes, avec boisson et dessert selon la formule. De 11,90 à 16,90&nbsp;€.</p></div>
       </div>
       <div class="formules-grille">
         <div class="formule-photo">
@@ -170,19 +178,19 @@
 <nav class="dock" aria-label="Actions rapides">
   <a class="btn ghost" href="carte.html">La carte</a>
   <button class="btn ghost" type="button" data-appel>Appeler</button>
-  <button class="btn panier-dock" type="button" data-panier>Panier <span class="nb" data-n="0">0</span></button>
+  <button class="btn panier-dock est-vide" type="button" data-panier aria-label="Panier vide"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="lbl">Panier</span><span class="nb" data-n="0">0</span><span class="tot"></span></button>
 </nav>
 <footer class="pied wrap">
   <div class="max">
     <div class="pied-grille">
       <div><img class="logo-pied" src="assets/img/logo-pizza-lyght-crop-240.webp" alt="Pizza Lyght" width="120" height="80" loading="lazy"><p>L’important c’est le goût !<br>Pizzas artisanales à Cayenne, Kourou et Saint-Laurent-du-Maroni.</p></div>
-      <div><h4>La carte</h4><ul>
+      <div><h2 class="pied-titre">La carte</h2><ul>
         <li><a class="lien" href="carte.html#pizzas">Pizzas</a></li><li><a class="lien" href="carte.html#salades">Salades</a></li><li><a class="lien" href="carte.html#paninis">Paninis</a></li><li><a class="lien" href="carte.html#formules">Formules</a></li><li><a class="lien" href="carte.html#boissons">Boissons</a></li></ul></div>
-      <div><h4>Pizzerias</h4><ul>
+      <div><h2 class="pied-titre">Pizzerias</h2><ul>
         <li><a class="lien" href="cayenne.html">Cayenne</a> · <a class="lien" href="https://www.facebook.com/pizzalyghtcayenne" target="_blank" rel="noopener">Facebook</a></li>
         <li><a class="lien" href="kourou.html">Kourou</a> · <a class="lien" href="https://www.facebook.com/profile.php?id=100048098959605" target="_blank" rel="noopener">Facebook</a></li>
         <li><a class="lien" href="saint-laurent.html">Saint-Laurent</a> · <a class="lien" href="https://www.facebook.com/pizzalyght" target="_blank" rel="noopener">Facebook</a></li></ul></div>
-      <div><h4>Informations</h4><ul>
+      <div><h2 class="pied-titre">Informations</h2><ul>
         <li><a class="lien" href="https://www.pizzalyght.fr/mentions-legales" target="_blank" rel="noopener">Mentions légales</a></li>
         <li><a class="lien" href="https://www.pizzalyght.fr/cgv" target="_blank" rel="noopener">Conditions générales de vente</a></li>
         <li><a class="lien" href="https://www.pizzalyght.fr/online-ordering" target="_blank" rel="noopener">Commande en ligne actuelle</a></li></ul></div>
@@ -194,9 +202,10 @@
     </div>
   </div>
 </footer>
+<button class="panier-flottant" type="button" data-panier hidden><span class="nb" data-n="0">0</span><span><span class="lib">article</span> · voir le panier</span><span class="tot prix"></span></button>
 <div class="voile" aria-hidden="true"></div>
 <aside class="tiroir" id="panier" role="dialog" aria-modal="true" aria-labelledby="panier-titre">
-  <div class="tiroir-tete"><h2 id="panier-titre">Votre commande</h2><button class="fermer" type="button" data-fermer aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  <div class="tiroir-tete"><h2 id="panier-titre" tabindex="-1">Votre commande</h2><button class="fermer" type="button" data-fermer aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   <div class="tiroir-corps"></div>
   <div class="tiroir-pied"></div>
 </aside>

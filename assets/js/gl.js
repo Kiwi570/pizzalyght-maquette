@@ -1,6 +1,5 @@
 /* Pizza Lyght — effets WebGL (OGL).
-   1. La cuisson : la vraie photo de pizza passe de crue à dorée, avec l'air chaud qui ondule au-dessus.
-   2. La fumée du boucan : fond de fumée ambrée qui monte.
+   La cuisson : la vraie photo de pizza passe de crue à dorée, avec l'air chaud qui ondule au-dessus.
    Sans WebGL, les versions CSS prennent le relais. */
 (function () {
   var PL = window.PL = window.PL || {};
@@ -57,12 +56,19 @@
     var img = new Image(); img.decoding = 'async';
     var pret = new Promise(function (res, rej) { img.onload = function () { tex.image = img; res(); }; img.onerror = rej; });
     img.src = src;
-    var raf = 0, vis = true, arret = false, t0 = performance.now();
+    var raf = 0, vis = true, arret = false, t0 = performance.now(), dernier = 0, cuitDepuis = 0;
+    /* Économie : 30 images/s une fois cuite ; sur écran tactile, image fixe une fois cuite (l'air chaud suit la souris, inutile au doigt). */
+    var tactile = !matchMedia('(pointer: fine)').matches;
     function taille() { var w = canvas.parentNode.clientWidth, h = canvas.parentNode.clientHeight; if (w) { renderer.setSize(w, h); canvas.style.width = '100%'; canvas.style.height = '100%'; } }
     function boucle(t) {
       raf = 0; if (arret) return;
+      var cuite = prog.uniforms.uCuit.value >= 1;
+      if (cuite && !cuitDepuis) cuitDepuis = t;
+      if (cuite && t - dernier < 32) { if (vis) raf = requestAnimationFrame(boucle); return; }
+      dernier = t;
       prog.uniforms.uT.value = (t - t0) / 1000;
       renderer.render({ scene: mesh });
+      if (tactile && cuite && t - cuitDepuis > 400) return;
       if (vis && !opts.statique) raf = requestAnimationFrame(boucle);
     }
     var ro = new ResizeObserver(function () { taille(); if (!raf) renderer.render({ scene: mesh }); }); ro.observe(canvas.parentNode);
@@ -78,31 +84,4 @@
     };
   };
 
-  /* La fumée du boucan */
-  PL.fumee = function (canvas) {
-    var O = window.OGL;
-    var renderer = new O.Renderer({ canvas: canvas, alpha: true, dpr: Math.min(1, window.devicePixelRatio || 1) });
-    var gl = renderer.gl; gl.clearColor(0, 0, 0, 0);
-    var prog = new O.Program(gl, {
-      vertex: VERT,
-      fragment: 'precision highp float;varying vec2 vUv;uniform float uT;uniform vec2 uR;' + NOISE +
-        'void main(){vec2 p=vUv*vec2(uR.x/uR.y,1.)*2.2;' +
-        'vec2 q=vec2(fbm(p+vec2(0.,-uT*.08)),fbm(p+vec2(5.2,1.3)-uT*.06));' +
-        'float f=fbm(p+2.2*q+vec2(0.,-uT*.14));' +
-        'float bas=smoothstep(1.1,0.,vUv.y);' +
-        'float a=smoothstep(.38,.92,f)*(.25+.75*bas);' +
-        'vec3 col=mix(vec3(.42,.18,.07),vec3(1.,.58,.22),smoothstep(.5,1.,f)*bas);' +
-        'gl_FragColor=vec4(col*a*.55,a*.55);}',
-      uniforms: { uT: { value: 0 }, uR: { value: new O.Vec2(1, 1) } },
-      transparent: true
-    });
-    var mesh = new O.Mesh(gl, { geometry: new O.Triangle(gl), program: prog });
-    var raf = 0, vis = false, arret = false, t0 = performance.now();
-    function taille() { var w = canvas.parentNode.clientWidth, h = canvas.parentNode.clientHeight; if (w) { renderer.setSize(w, h); canvas.style.width = '100%'; canvas.style.height = '100%'; prog.uniforms.uR.value.set(w, h); } }
-    function boucle(t) { raf = 0; if (arret || !vis) return; prog.uniforms.uT.value = (t - t0) / 1000; renderer.render({ scene: mesh }); raf = requestAnimationFrame(boucle); }
-    var ro = new ResizeObserver(taille); ro.observe(canvas.parentNode);
-    var io = new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis && !raf) raf = requestAnimationFrame(boucle); }, { rootMargin: '100px' }); io.observe(canvas);
-    taille();
-    return { stop: function () { arret = true; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); neuf(canvas, gl); } };
-  };
 })();

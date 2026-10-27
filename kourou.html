@@ -11,7 +11,14 @@
 <meta property="og:title" content="Pizza Lyght Kourou">
 <meta property="og:description" content="Pizza Lyght Kourou : 75 avenue du Général de Gaulle, 97310 Kourou. 18h–23h. Sur place, Terrasse, À emporter, Livraison.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/img/pizza-pelle-fond-noir-1280.webp">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Pizza Lyght">
+<meta property="og:url" content="https://pizzalyght-maquette.vercel.app/kourou">
+<meta property="og:image" content="https://pizzalyght-maquette.vercel.app/og-pizza-lyght.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pizza Lyght : l’important c’est le goût">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,14 +30,14 @@
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="nav">
   <a class="logo" href="index.html" aria-label="Pizza Lyght, accueil"><img src="assets/img/logo-pizza-lyght-crop-240.webp" srcset="assets/img/logo-pizza-lyght-crop-240.webp 1x, assets/img/logo-pizza-lyght-crop-480.webp 2x" alt="Pizza Lyght" width="96" height="64"></a>
-  <ul class="nav-liens"><li><a class="lien" href="carte.html">La carte</a></li><li><a class="lien" href="cayenne.html">Cayenne</a></li><li><a class="lien" href="kourou.html" aria-current="page">Kourou</a></li><li><a class="lien" href="saint-laurent.html">Saint-Laurent</a></li></ul>
+  <nav aria-label="Navigation principale"><ul class="nav-liens"><li><a class="lien" href="carte.html">La carte</a></li><li><a class="lien" href="cayenne.html">Cayenne</a></li><li><a class="lien" href="kourou.html" aria-current="page">Kourou</a></li><li><a class="lien" href="saint-laurent.html">Saint-Laurent</a></li></ul></nav>
   <div class="nav-droite">
-    <button class="pilule ville-btn" type="button" data-appel aria-label="Nos pizzerias : statut, horaires et téléphones"><span class="statut"><span class="pt" aria-hidden="true"></span><span>Nos pizzerias</span></span></button>
+    <button class="pilule ville-btn" type="button" data-appel><span class="statut"><span class="pt" aria-hidden="true"></span><span>Nos pizzerias</span></span><span class="sr-only"> : horaires et téléphones</span></button>
     <button class="pilule calme-btn" type="button" aria-pressed="false" title="Couper les animations"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="lbl">Mode calme</span><span class="sr-only"> (couper les animations)</span></button>
     <button class="pilule panier-btn" type="button" data-panier>Panier <span class="nb" data-n="0">0</span></button>
   </div>
 </header>
-<main id="contenu" data-ville="kourou">
+<main id="contenu" tabindex="-1" data-ville="kourou">
   <section class="r-hero wrap" aria-labelledby="titre-ville">
     <div class="photo-fond" data-grok="g-bokeh-chaud-16x9" data-grok-m="g-bokeh-chaud-9x16" data-grok-vite></div>
     <div class="bokeh" aria-hidden="true"><i style="left:21%;top:44%;width:107px;height:107px;opacity:0.46;animation-delay:-4.8s"></i><i style="left:29%;top:49%;width:182px;height:182px;opacity:0.31;animation-delay:-0.5s"></i><i style="left:66%;top:48%;width:176px;height:176px;opacity:0.39;animation-delay:-8.2s"></i><i style="left:49%;top:51%;width:94px;height:94px;opacity:0.39;animation-delay:-6.5s"></i><i style="left:6%;top:63%;width:80px;height:80px;opacity:0.21;animation-delay:-7.8s"></i><i style="left:80%;top:43%;width:56px;height:56px;opacity:0.18;animation-delay:-5.1s"></i><i style="left:13%;top:72%;width:118px;height:118px;opacity:0.19;animation-delay:-6.2s"></i><i style="left:87%;top:12%;width:70px;height:70px;opacity:0.45;animation-delay:-1.3s"></i><i style="left:35%;top:29%;width:193px;height:193px;opacity:0.33;animation-delay:-0.5s"></i><i style="left:21%;top:32%;width:189px;height:189px;opacity:0.25;animation-delay:-4.6s"></i><i style="left:82%;top:64%;width:167px;height:167px;opacity:0.38;animation-delay:-8.8s"></i><i style="left:41%;top:12%;width:120px;height:120px;opacity:0.16;animation-delay:-4.1s"></i></div>
@@ -41,7 +48,7 @@
         <div class="infos-l"><span data-statut="kourou"></span><span>75 avenue du Général de Gaulle, 97310 Kourou</span><span>18h–23h</span></div>
         <div class="actions">
           <button class="btn" type="button" data-commander="kourou" data-aimant><span class="btn-in">Commander ici</span></button>
-          <button class="btn ghost" type="button" data-appel data-aimant><span class="btn-in">Appeler</span></button>
+          <button class="btn ghost" type="button" data-appel="kourou" data-aimant><span class="btn-in">Appeler</span></button>
           <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=75%20avenue%20du%20G%C3%A9n%C3%A9ral%20de%20Gaulle%2C%2097310%20Kourou" target="_blank" rel="noopener" data-aimant><span class="btn-in">Itinéraire</span></a>
         </div>
       </div>
@@ -89,7 +96,7 @@
 
   <section class="section wrap" aria-labelledby="titre-signature">
     <div class="max signature" data-art>
-      <div class="art"><img alt="Illustration de la Pizza Kouroucienne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-kouroucienne" width="520" height="520"></div>
+      <div class="art"><img alt="Illustration de la Pizza Kouroucienne" src="assets/img/pizzas/pizzas--pizza-kouroucienne.svg" width="520" height="520" loading="lazy" decoding="async"></div>
       <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
         <span class="eyebrow">La pizza qui porte son nom</span>
         <h2 id="titre-signature" data-titre>Kouroucienne</h2>
@@ -111,19 +118,19 @@
 <nav class="dock" aria-label="Actions rapides">
   <a class="btn ghost" href="carte.html">La carte</a>
   <button class="btn ghost" type="button" data-appel>Appeler</button>
-  <button class="btn panier-dock" type="button" data-panier>Panier <span class="nb" data-n="0">0</span></button>
+  <button class="btn panier-dock est-vide" type="button" data-panier aria-label="Panier vide"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="lbl">Panier</span><span class="nb" data-n="0">0</span><span class="tot"></span></button>
 </nav>
 <footer class="pied wrap">
   <div class="max">
     <div class="pied-grille">
       <div><img class="logo-pied" src="assets/img/logo-pizza-lyght-crop-240.webp" alt="Pizza Lyght" width="120" height="80" loading="lazy"><p>L’important c’est le goût !<br>Pizzas artisanales à Cayenne, Kourou et Saint-Laurent-du-Maroni.</p></div>
-      <div><h4>La carte</h4><ul>
+      <div><h2 class="pied-titre">La carte</h2><ul>
         <li><a class="lien" href="carte.html#pizzas">Pizzas</a></li><li><a class="lien" href="carte.html#salades">Salades</a></li><li><a class="lien" href="carte.html#paninis">Paninis</a></li><li><a class="lien" href="carte.html#formules">Formules</a></li><li><a class="lien" href="carte.html#boissons">Boissons</a></li></ul></div>
-      <div><h4>Pizzerias</h4><ul>
+      <div><h2 class="pied-titre">Pizzerias</h2><ul>
         <li><a class="lien" href="cayenne.html">Cayenne</a> · <a class="lien" href="https://www.facebook.com/pizzalyghtcayenne" target="_blank" rel="noopener">Facebook</a></li>
         <li><a class="lien" href="kourou.html">Kourou</a> · <a class="lien" href="https://www.facebook.com/profile.php?id=100048098959605" target="_blank" rel="noopener">Facebook</a></li>
         <li><a class="lien" href="saint-laurent.html">Saint-Laurent</a> · <a class="lien" href="https://www.facebook.com/pizzalyght" target="_blank" rel="noopener">Facebook</a></li></ul></div>
-      <div><h4>Informations</h4><ul>
+      <div><h2 class="pied-titre">Informations</h2><ul>
         <li><a class="lien" href="https://www.pizzalyght.fr/mentions-legales" target="_blank" rel="noopener">Mentions légales</a></li>
         <li><a class="lien" href="https://www.pizzalyght.fr/cgv" target="_blank" rel="noopener">Conditions générales de vente</a></li>
         <li><a class="lien" href="https://www.pizzalyght.fr/online-ordering" target="_blank" rel="noopener">Commande en ligne actuelle</a></li></ul></div>
@@ -135,9 +142,10 @@
     </div>
   </div>
 </footer>
+<button class="panier-flottant" type="button" data-panier hidden><span class="nb" data-n="0">0</span><span><span class="lib">article</span> · voir le panier</span><span class="tot prix"></span></button>
 <div class="voile" aria-hidden="true"></div>
 <aside class="tiroir" id="panier" role="dialog" aria-modal="true" aria-labelledby="panier-titre">
-  <div class="tiroir-tete"><h2 id="panier-titre">Votre commande</h2><button class="fermer" type="button" data-fermer aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  <div class="tiroir-tete"><h2 id="panier-titre" tabindex="-1">Votre commande</h2><button class="fermer" type="button" data-fermer aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   <div class="tiroir-corps"></div>
   <div class="tiroir-pied"></div>
 </aside>

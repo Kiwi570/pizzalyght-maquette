@@ -11,7 +11,14 @@
 <meta property="og:title" content="La carte · Pizza Lyght">
 <meta property="og:description" content="Toute la carte Pizza Lyght : 37 pizzas dont la Allasani à composer, salades, pâtes, paninis, soupes, desserts, formules et boissons. Prix TTC.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/img/pizza-olives-granit-1107.webp">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Pizza Lyght">
+<meta property="og:url" content="https://pizzalyght-maquette.vercel.app/carte">
+<meta property="og:image" content="https://pizzalyght-maquette.vercel.app/og-pizza-lyght.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pizza Lyght : l’important c’est le goût">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,14 +30,14 @@
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="nav">
   <a class="logo" href="index.html" aria-label="Pizza Lyght, accueil"><img src="assets/img/logo-pizza-lyght-crop-240.webp" srcset="assets/img/logo-pizza-lyght-crop-240.webp 1x, assets/img/logo-pizza-lyght-crop-480.webp 2x" alt="Pizza Lyght" width="96" height="64"></a>
-  <ul class="nav-liens"><li><a class="lien" href="carte.html" aria-current="page">La carte</a></li><li><a class="lien" href="cayenne.html">Cayenne</a></li><li><a class="lien" href="kourou.html">Kourou</a></li><li><a class="lien" href="saint-laurent.html">Saint-Laurent</a></li></ul>
+  <nav aria-label="Navigation principale"><ul class="nav-liens"><li><a class="lien" href="carte.html" aria-current="page">La carte</a></li><li><a class="lien" href="cayenne.html">Cayenne</a></li><li><a class="lien" href="kourou.html">Kourou</a></li><li><a class="lien" href="saint-laurent.html">Saint-Laurent</a></li></ul></nav>
   <div class="nav-droite">
-    <button class="pilule ville-btn" type="button" data-appel aria-label="Nos pizzerias : statut, horaires et téléphones"><span class="statut"><span class="pt" aria-hidden="true"></span><span>Nos pizzerias</span></span></button>
+    <button class="pilule ville-btn" type="button" data-appel><span class="statut"><span class="pt" aria-hidden="true"></span><span>Nos pizzerias</span></span><span class="sr-only"> : horaires et téléphones</span></button>
     <button class="pilule calme-btn" type="button" aria-pressed="false" title="Couper les animations"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="lbl">Mode calme</span><span class="sr-only"> (couper les animations)</span></button>
     <button class="pilule panier-btn" type="button" data-panier>Panier <span class="nb" data-n="0">0</span></button>
   </div>
 </header>
-<main id="contenu">
+<main id="contenu" tabindex="-1">
   <section class="carte-hero wrap" aria-labelledby="titre-carte">
     <div class="hero-fond" data-grok="g-hero-braises-16x9" data-grok-m="g-hero-braises-9x16" data-grok-vite><canvas aria-hidden="true"></canvas></div>
     <div class="grille max">
@@ -50,10 +57,11 @@
     <div class="in wrap">
       <nav class="defil-h" aria-label="Rubriques de la carte"><a class="cat-lien" href="#pizzas" data-lien="pizzas">Pizzas <small>37</small></a><a class="cat-lien" href="#salades" data-lien="salades">Salades <small>10</small></a><a class="cat-lien" href="#salades-a-composer" data-lien="salades-a-composer">Salades à composer <small>6</small></a><a class="cat-lien" href="#pates" data-lien="pates">Pâtes <small>2</small></a><a class="cat-lien" href="#paninis" data-lien="paninis">Paninis <small>14</small></a><a class="cat-lien" href="#soupes" data-lien="soupes">Soupes <small>5</small></a><a class="cat-lien" href="#desserts" data-lien="desserts">Desserts <small>10</small></a><a class="cat-lien" href="#formules" data-lien="formules">Formules <small>7</small></a><a class="cat-lien" href="#boissons" data-lien="boissons">Boissons <small>19</small></a></nav>
       <div class="filtres">
+        <span class="filtre-label" aria-hidden="true">Pizzas</span>
         <div class="puces" role="group" aria-label="Filtrer les pizzas" style="gap:6px">
           <button class="puce" type="button" aria-pressed="false" data-filtre="sans-viande">Sans viande ni poisson</button>
           <button class="puce" type="button" aria-pressed="false" data-filtre="boucane">Boucané</button>
-          <button class="puce" type="button" aria-pressed="false" data-filtre="mer">De la mer</button>
+          <button class="puce" type="button" aria-pressed="false" data-filtre="mer">Poisson, fruits de mer</button>
           <button class="puce" type="button" aria-pressed="false" data-filtre="creme">Base crème</button>
         </div>
         <label class="recherche"><span class="sr-only">Rechercher un plat ou un ingrédient</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="recherche" type="search" placeholder="Chercher : chorizo, saumon, coco…" autocomplete="off"></label>
@@ -68,263 +76,263 @@
     <section class="rubrique" id="pizzas" aria-labelledby="t-pizzas" data-rubrique>
       <div class="rubrique-tete">
         <div class="gauche"><span class="eyebrow">37 choix</span><h2 id="t-pizzas" data-titre>Pizzas</h2><p class="lead">Pâte et sauce tomate maison.</p></div>
-        <div class="banniere"><img alt="Pizza gratinée aux olives noires, photo Pizza Lyght" src="assets/img/pizza-olives-granit-640.webp" srcset="assets/img/pizza-olives-granit-640.webp 640w, assets/img/pizza-olives-granit-1107.webp 1107w" sizes="(max-width: 760px) 100vw, 56vw" loading="lazy" decoding="async" width="1107" height="484"></div>
+        <div class="banniere"><img alt="Pizza aux tomates, olives et poivrons sur une pelle en bois, photo Pizza Lyght" src="assets/img/pizza-pelle-fond-noir-640.webp" srcset="assets/img/pizza-pelle-fond-noir-640.webp 640w, assets/img/pizza-pelle-fond-noir-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 56vw" loading="lazy" decoding="async" width="1280" height="560"></div>
       </div>
       <div class="grille-pizzas">
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza americaine tomate, chorizo, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Américaine" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-americaine" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Américaine" src="assets/img/pizzas/pizzas--pizza-americaine.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Américaine</h3>
           <p class="ing">Tomate, chorizo, fromage, olives</p>
           <div class="bas"><span class="prix">11,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-americaine" aria-label="Ajouter la Pizza Américaine au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza angela tomate, jambon, fromage, oeuf">
-          <div class="art"><img alt="Illustration de la Pizza Angela" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-angela" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Angela" src="assets/img/pizzas/pizzas--pizza-angela.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Angela</h3>
           <p class="ing">Tomate, jambon, fromage, œuf</p>
           <div class="bas"><span class="prix">11,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-angela" aria-label="Ajouter la Pizza Angela au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="sans-viande creme" data-texte="pizza aveyron creme fraiche, fromage de chevre, roquefort, emmental, miel">
-          <div class="art"><img alt="Illustration de la Pizza Aveyron" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-aveyron" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Aveyron" src="assets/img/pizzas/pizzas--pizza-aveyron.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Base crème</span><span class="tag">Sans viande ni poisson</span></div>
           <h3>Aveyron</h3>
           <p class="ing">Crème fraîche, fromage de chèvre, roquefort, emmental, miel</p>
           <div class="bas"><span class="prix">13,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-aveyron" aria-label="Ajouter la Pizza Aveyron au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza babeloued tomate, merguez, lardons, jambon, champignons, oignons, fromage, creme fraiche, olives">
-          <div class="art"><img alt="Illustration de la Pizza Babeloued" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-babeloued" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Babeloued" src="assets/img/pizzas/pizzas--pizza-babeloued.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Babeloued</h3>
           <p class="ing">Tomate, merguez, lardons, jambon, champignons, oignons, fromage, crème fraîche, olives</p>
           <div class="bas"><span class="prix">14,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-babeloued" aria-label="Ajouter la Pizza Babeloued au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza bolognaise tomate, viande hachee, poivrons, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Bolognaise" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-bolognaise" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Bolognaise" src="assets/img/pizzas/pizzas--pizza-bolognaise.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Bolognaise</h3>
           <p class="ing">Tomate, viande hachée, poivrons, fromage</p>
           <div class="bas"><span class="prix">12,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-bolognaise" aria-label="Ajouter la Pizza Bolognaise au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza calzone tomate, jambon, champignons, oeuf, fromage (chausson)">
-          <div class="art"><img alt="Illustration de la Pizza Calzone" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-calzone" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Calzone" src="assets/img/pizzas/pizzas--pizza-calzone.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Calzone</h3>
           <p class="ing">Tomate, jambon, champignons, œuf, fromage (chausson)</p>
           <div class="bas"><span class="prix">13,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-calzone" aria-label="Ajouter la Pizza Calzone au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza cannibale tomate, viande hachee, saucisse fumee, lardons, merguez, jambon, poulet fume, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Cannibale" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-cannibale" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Cannibale" src="assets/img/pizzas/pizzas--pizza-cannibale.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Cannibale</h3>
           <p class="ing">Tomate, viande hachée, saucisse fumée, lardons, merguez, jambon, poulet fumé, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">20,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-cannibale" aria-label="Ajouter la Pizza Cannibale au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="creme" data-texte="pizza campagnarde creme fraiche, fromage de chevre, lardons, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Campagnarde" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-campagnarde" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Campagnarde" src="assets/img/pizzas/pizzas--pizza-campagnarde.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Base crème</span></div>
           <h3>Campagnarde</h3>
           <p class="ing">Crème fraîche, fromage de chèvre, lardons, fromage, olives</p>
           <div class="bas"><span class="prix">13,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-campagnarde" aria-label="Ajouter la Pizza Campagnarde au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza caprice tomate, jambon, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Caprice" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-caprice" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Caprice" src="assets/img/pizzas/pizzas--pizza-caprice.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Caprice</h3>
           <p class="ing">Tomate, jambon, fromage</p>
           <div class="bas"><span class="prix">10,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-caprice" aria-label="Ajouter la Pizza Caprice au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="creme" data-texte="pizza carbonara creme fraiche, lardons, jambon, fromage, oeuf">
-          <div class="art"><img alt="Illustration de la Pizza Carbonara" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-carbonara" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Carbonara" src="assets/img/pizzas/pizzas--pizza-carbonara.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Base crème</span></div>
           <h3>Carbonara</h3>
           <p class="ing">Crème fraîche, lardons, jambon, fromage, œuf</p>
           <div class="bas"><span class="prix">12,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-carbonara" aria-label="Ajouter la Pizza Carbonara au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza casablanca tomate, merguez, lardons, jambon, poivrons, oignons, fromage, creme fraiche, olives">
-          <div class="art"><img alt="Illustration de la Pizza Casablanca" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-casablanca" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Casablanca" src="assets/img/pizzas/pizzas--pizza-casablanca.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Casablanca</h3>
           <p class="ing">Tomate, merguez, lardons, jambon, poivrons, oignons, fromage, crème fraîche, olives</p>
           <div class="bas"><span class="prix">14,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-casablanca" aria-label="Ajouter la Pizza Casablanca au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza cayennaise tomate, thon, crevettes, lardons, poivrons, oignons, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Cayennaise" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-cayennaise" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Cayennaise" src="assets/img/pizzas/pizzas--pizza-cayennaise.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Cayennaise</h3>
           <p class="ing">Tomate, thon, crevettes, lardons, poivrons, oignons, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">16,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-cayennaise" aria-label="Ajouter la Pizza Cayennaise au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza chicken tomate, poulet fume, oignons, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Chicken" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-chicken" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Chicken" src="assets/img/pizzas/pizzas--pizza-chicken.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Chicken</h3>
           <p class="ing">Tomate, poulet fumé, oignons, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">14,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-chicken" aria-label="Ajouter la Pizza Chicken au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza chicken hawaienne tomate, poulet fume, ananas, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Chicken Hawaïenne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-chicken-hawaienne" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Chicken Hawaïenne" src="assets/img/pizzas/pizzas--pizza-chicken-hawaienne.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Chicken Hawaïenne</h3>
           <p class="ing">Tomate, poulet fumé, ananas, fromage, olives</p>
           <div class="bas"><span class="prix">15,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-chicken-hawaienne" aria-label="Ajouter la Pizza Chicken Hawaïenne au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="boucane" data-texte="pizza creole tomate, poulet boucane, oignons, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Créole" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-creole" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Créole" src="assets/img/pizzas/pizzas--pizza-creole.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag boucan">Boucané</span></div>
           <h3>Créole</h3>
           <p class="ing">Tomate, poulet boucané, oignons, fromage</p>
           <div class="bas"><span class="prix">16,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-creole" aria-label="Ajouter la Pizza Créole au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="creme" data-texte="pizza flamme creme fraiche, lardons, jambon, oignons, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Flamme" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-flamme" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Flamme" src="assets/img/pizzas/pizzas--pizza-flamme.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Base crème</span></div>
           <h3>Flamme</h3>
           <p class="ing">Crème fraîche, lardons, jambon, oignons, fromage</p>
           <div class="bas"><span class="prix">12,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-flamme" aria-label="Ajouter la Pizza Flamme au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="sans-viande" data-texte="pizza fromagere tomate, fromage de chevre, roquefort, emmental">
-          <div class="art"><img alt="Illustration de la Pizza Fromagère" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-fromagere" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Fromagère" src="assets/img/pizzas/pizzas--pizza-fromagere.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Sans viande ni poisson</span></div>
           <h3>Fromagère</h3>
           <p class="ing">Tomate, fromage de chèvre, roquefort, emmental</p>
           <div class="bas"><span class="prix">12,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-fromagere" aria-label="Ajouter la Pizza Fromagère au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza hawaienne tomate, jambon, ananas, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Hawaïenne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-hawaienne" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Hawaïenne" src="assets/img/pizzas/pizzas--pizza-hawaienne.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Hawaïenne</h3>
           <p class="ing">Tomate, jambon, ananas, fromage, olives</p>
           <div class="bas"><span class="prix">12,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-hawaienne" aria-label="Ajouter la Pizza Hawaïenne au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza jardiniere tomate, jambon, lardons, pomme de terre, fromage, creme fraiche, olives">
-          <div class="art"><img alt="Illustration de la Pizza Jardinière" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-jardiniere" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Jardinière" src="assets/img/pizzas/pizzas--pizza-jardiniere.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Jardinière</h3>
           <p class="ing">Tomate, jambon, lardons, pomme de terre, fromage, crème fraîche, olives</p>
           <div class="bas"><span class="prix">13,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-jardiniere" aria-label="Ajouter la Pizza Jardinière au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza kouroucienne tomate, chorizo, lardons, poivrons, champignons, olives, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Kouroucienne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-kouroucienne" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Kouroucienne" src="assets/img/pizzas/pizzas--pizza-kouroucienne.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Kouroucienne</h3>
           <p class="ing">Tomate, chorizo, lardons, poivrons, champignons, olives, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">15,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-kouroucienne" aria-label="Ajouter la Pizza Kouroucienne au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza kremoka tomate, crevettes, fines herbes, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Kremoka" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-kremoka" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Kremoka" src="assets/img/pizzas/pizzas--pizza-kremoka.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Kremoka</h3>
           <p class="ing">Tomate, crevettes, fines herbes, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">17,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-kremoka" aria-label="Ajouter la Pizza Kremoka au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza mananaise tomate, jambon, crevettes, saumon, anchois, merguez, oignons, fromage, oeuf, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Mananaise" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-mananaise" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Mananaise" src="assets/img/pizzas/pizzas--pizza-mananaise.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Mananaise</h3>
           <p class="ing">Tomate, jambon, crevettes, saumon, anchois, merguez, oignons, fromage, œuf, crème fraîche</p>
           <div class="bas"><span class="prix">17,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-mananaise" aria-label="Ajouter la Pizza Mananaise au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="sans-viande" data-texte="pizza marguerite tomate, oignons, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Marguerite" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-marguerite" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Marguerite" src="assets/img/pizzas/pizzas--pizza-marguerite.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Sans viande ni poisson</span></div>
           <h3>Marguerite</h3>
           <p class="ing">Tomate, oignons, fromage, olives</p>
           <div class="bas"><span class="prix">8,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-marguerite" aria-label="Ajouter la Pizza Marguerite au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza mariniere tomate, moules, fines herbes, citron, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Marinière" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-mariniere" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Marinière" src="assets/img/pizzas/pizzas--pizza-mariniere.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Marinière</h3>
           <p class="ing">Tomate, moules, fines herbes, citron, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">12,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-mariniere" aria-label="Ajouter la Pizza Marinière au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="boucane mer" data-texte="pizza maroni tomate, poissons boucanes, oignons, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Maroni" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-maroni" width="220" height="220"></div>
-          <div class="tags"><span class="tag boucan">Boucané</span><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Maroni" src="assets/img/pizzas/pizzas--pizza-maroni.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag boucan">Boucané</span><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Maroni</h3>
           <p class="ing">Tomate, poissons boucanés, oignons, fromage</p>
           <div class="bas"><span class="prix">15,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-maroni" aria-label="Ajouter la Pizza Maroni au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="boucane" data-texte="pizza matoury tomate, saucisses boucanees, chorizo, poivrons, oignons, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Matoury" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-matoury" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Matoury" src="assets/img/pizzas/pizzas--pizza-matoury.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag boucan">Boucané</span></div>
           <h3>Matoury</h3>
           <p class="ing">Tomate, saucisses boucanées, chorizo, poivrons, oignons, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">16,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-matoury" aria-label="Ajouter la Pizza Matoury au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza mexicaine tomate, viande hachee, poivrons, mais, oignons, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Mexicaine" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-mexicaine" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Mexicaine" src="assets/img/pizzas/pizzas--pizza-mexicaine.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Mexicaine</h3>
           <p class="ing">Tomate, viande hachée, poivrons, maïs, oignons, fromage</p>
           <div class="bas"><span class="prix">13,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-mexicaine" aria-label="Ajouter la Pizza Mexicaine au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza napolitaine tomate, anchois, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Napolitaine" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-napolitaine" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Napolitaine" src="assets/img/pizzas/pizzas--pizza-napolitaine.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Napolitaine</h3>
           <p class="ing">Tomate, anchois, fromage, olives</p>
           <div class="bas"><span class="prix">11,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-napolitaine" aria-label="Ajouter la Pizza Napolitaine au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza norvegienne tomate, saumon, fromage, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Norvégienne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-norvegienne" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Norvégienne" src="assets/img/pizzas/pizzas--pizza-norvegienne.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Norvégienne</h3>
           <p class="ing">Tomate, saumon, fromage, crème fraîche</p>
           <div class="bas"><span class="prix">14,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-norvegienne" aria-label="Ajouter la Pizza Norvégienne au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza orientale tomate, merguez, oignons, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Orientale" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-orientale" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Orientale" src="assets/img/pizzas/pizzas--pizza-orientale.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Orientale</h3>
           <p class="ing">Tomate, merguez, oignons, fromage, olives</p>
           <div class="bas"><span class="prix">12,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-orientale" aria-label="Ajouter la Pizza Orientale au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza paysanne tomate, lardons, jambon, champignons, oignons, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Paysanne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-paysanne" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Paysanne" src="assets/img/pizzas/pizzas--pizza-paysanne.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Paysanne</h3>
           <p class="ing">Tomate, lardons, jambon, champignons, oignons, fromage, olives</p>
           <div class="bas"><span class="prix">13,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-paysanne" aria-label="Ajouter la Pizza Paysanne au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza pecheur tomate, fruits de mer, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Pêcheur" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-pecheur" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Pêcheur" src="assets/img/pizzas/pizzas--pizza-pecheur.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Pêcheur</h3>
           <p class="ing">Tomate, fruits de mer, fromage</p>
           <div class="bas"><span class="prix">12,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-pecheur" aria-label="Ajouter la Pizza Pêcheur au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza regina tomate, jambon, champignons, fromage">
-          <div class="art"><img alt="Illustration de la Pizza Régina" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-regina" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Régina" src="assets/img/pizzas/pizzas--pizza-regina.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"></div>
           <h3>Régina</h3>
           <p class="ing">Tomate, jambon, champignons, fromage</p>
           <div class="bas"><span class="prix">11,50 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-regina" aria-label="Ajouter la Pizza Régina au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="boucane" data-texte="pizza saint laurentaise tomate, poulet boucane, merguez, lardons, oignons, fromage, oeuf, creme fraiche">
-          <div class="art"><img alt="Illustration de la Pizza Saint Laurentaise" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-saint-laurentaise" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Saint Laurentaise" src="assets/img/pizzas/pizzas--pizza-saint-laurentaise.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag boucan">Boucané</span></div>
           <h3>Saint Laurentaise</h3>
           <p class="ing">Tomate, poulet boucané, merguez, lardons, oignons, fromage, œuf, crème fraîche</p>
           <div class="bas"><span class="prix">19,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-saint-laurentaise" aria-label="Ajouter la Pizza Saint Laurentaise au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="mer" data-texte="pizza santa tomate, thon, fromage, creme fraiche, olives">
-          <div class="art"><img alt="Illustration de la Pizza Santa" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-santa" width="220" height="220"></div>
-          <div class="tags"><span class="tag">De la mer</span></div>
+          <div class="art"><img alt="Illustration de la Pizza Santa" src="assets/img/pizzas/pizzas--pizza-santa.webp" width="220" height="220" loading="lazy" decoding="async"></div>
+          <div class="tags"><span class="tag">Poisson, fruits de mer</span></div>
           <h3>Santa</h3>
           <p class="ing">Tomate, thon, fromage, crème fraîche, olives</p>
           <div class="bas"><span class="prix">12,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-santa" aria-label="Ajouter la Pizza Santa au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="sans-viande" data-texte="pizza vegetarienne tomate, champignons, poivrons, oignons, fromage, olives">
-          <div class="art"><img alt="Illustration de la Pizza Végétarienne" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-vegetarienne" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Végétarienne" src="assets/img/pizzas/pizzas--pizza-vegetarienne.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag">Sans viande ni poisson</span></div>
           <h3>Végétarienne</h3>
           <p class="ing">Tomate, champignons, poivrons, oignons, fromage, olives</p>
           <div class="bas"><span class="prix">12,00 €</span><button class="ajout" type="button" data-ajouter="pizzas--pizza-vegetarienne" aria-label="Ajouter la Pizza Végétarienne au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
         </article>
         <article class="carte-pizza" data-art data-incline data-filtres="" data-texte="pizza allasani 8 ingredients au choix">
-          <div class="art"><img alt="Illustration de la Pizza Allasani" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-pizza="pizzas--pizza-allasani" width="220" height="220"></div>
+          <div class="art"><img alt="Illustration de la Pizza Allasani" src="assets/img/pizzas/pizzas--pizza-allasani.webp" width="220" height="220" loading="lazy" decoding="async"></div>
           <div class="tags"><span class="tag boucan">À composer</span></div>
           <h3>Allasani</h3>
           <p class="ing">8 ingrédients au choix</p>
@@ -403,7 +411,7 @@
 
     <section class="rubrique" id="soupes" aria-labelledby="t-soupes" data-rubrique>
       <div class="rubrique-tete">
-        <div class="gauche"><span class="eyebrow">5 choix</span><h2 id="t-soupes" data-titre>Soupes</h2><p class="lead">Légumes du marché et viande bouchère.</p></div>
+        <div class="gauche"><span class="eyebrow">5 choix</span><h2 id="t-soupes" data-titre>Soupes</h2><p class="lead">Légumes du marché ; viande de bœuf pour la soupe créole.</p></div>
         <div class="banniere"><img alt="Velouté avec crème, fromage râpé et croûtons" src="assets/img/veloute-croutons-640.webp" srcset="assets/img/veloute-croutons-640.webp 640w, assets/img/veloute-croutons-1125.webp 1125w" sizes="(max-width: 760px) 100vw, 56vw" loading="lazy" decoding="async" width="1125" height="492"></div>
       </div>
       <ul class="liste-plats">
@@ -440,13 +448,13 @@
         <div class="banniere"><img alt="Pizza sur une planche, une part soulevée, photo Pizza Lyght" src="assets/img/pizza-planche-part-640.webp" srcset="assets/img/pizza-planche-part-640.webp 640w, assets/img/pizza-planche-part-1000.webp 1000w, assets/img/pizza-planche-part-1488.webp 1488w" sizes="(max-width: 760px) 100vw, 56vw" loading="lazy" decoding="async" width="1488" height="651"></div>
       </div>
       <ul class="liste-plats">
-        <li class="plat" data-texte="formule pizza 1 pizza individuelle, 1 salade laitue, 3 crudites"><div class="nom">Formule pizza</div><div class="desc">1 pizza individuelle, 1 salade laitue, 3 crudités</div><span class="prix">11,90 €</span><button class="ajout" type="button" data-ajouter="formules--formule-pizza" data-detail="Choix à préciser" aria-label="Ajouter Formule pizza au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
-        <li class="plat" data-texte="formule pizza + boisson ou dessert 1 pizza individuelle, 1 salade laitue, 3 crudites, 1 jus au choix (canette 33 cl ou petit jus local) ou 1 dessert"><div class="nom">Formule pizza + boisson ou dessert</div><div class="desc">1 pizza individuelle, 1 salade laitue, 3 crudités, 1 jus au choix (canette 33 cl ou petit jus local) ou 1 dessert</div><span class="prix">14,90 €</span><button class="ajout" type="button" data-ajouter="formules--formule-pizza-boisson-ou-dessert" data-detail="Choix à préciser" aria-label="Ajouter Formule pizza + boisson ou dessert au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
-        <li class="plat" data-texte="formule pizza complete 1 pizza individuelle, 1 salade laitue, 3 crudites, 1 dessert, 1 jus au choix (canette 33 cl ou petit jus local)"><div class="nom">Formule pizza complète</div><div class="desc">1 pizza individuelle, 1 salade laitue, 3 crudités, 1 dessert, 1 jus au choix (canette 33 cl ou petit jus local)</div><span class="prix">16,00 €</span><button class="ajout" type="button" data-ajouter="formules--formule-pizza-complete" data-detail="Choix à préciser" aria-label="Ajouter Formule pizza complète au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
-        <li class="plat" data-texte="formule petite salade riz, pates, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule petite salade</div><div class="desc">Riz, pâtes, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">12,90 €</span><button class="ajout" type="button" data-ajouter="formules--formule-petite-salade" data-detail="Choix à préciser" aria-label="Ajouter Formule petite salade au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
-        <li class="plat" data-texte="formule grande salade riz, pates, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule grande salade</div><div class="desc">Riz, pâtes, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">15,90 €</span><button class="ajout" type="button" data-ajouter="formules--formule-grande-salade" data-detail="Choix à préciser" aria-label="Ajouter Formule grande salade au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
-        <li class="plat" data-texte="formule tagliatelles bolognaise, carbonara, crevettes ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule tagliatelles</div><div class="desc">Bolognaise, carbonara, crevettes ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">15,90 €</span><button class="ajout" type="button" data-ajouter="formules--formule-tagliatelles" data-detail="Choix à préciser" aria-label="Ajouter Formule tagliatelles au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
-        <li class="plat" data-texte="formule lasagnes bolognaise ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule lasagnes</div><div class="desc">Bolognaise ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">16,90 €</span><button class="ajout" type="button" data-ajouter="formules--formule-lasagnes" data-detail="Choix à préciser" aria-label="Ajouter Formule lasagnes au panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule pizza 1 pizza individuelle, 1 salade laitue, 3 crudites"><div class="nom">Formule pizza</div><div class="desc">1 pizza individuelle, 1 salade laitue, 3 crudités</div><span class="prix">11,90 €</span><button class="ajout" type="button" data-formule="formules--formule-pizza" aria-label="Choisir et ajouter Formule pizza"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule pizza + boisson ou dessert 1 pizza individuelle, 1 salade laitue, 3 crudites, 1 jus au choix (canette 33 cl ou petit jus local) ou 1 dessert"><div class="nom">Formule pizza + boisson ou dessert</div><div class="desc">1 pizza individuelle, 1 salade laitue, 3 crudités, 1 jus au choix (canette 33 cl ou petit jus local) ou 1 dessert</div><span class="prix">14,90 €</span><button class="ajout" type="button" data-formule="formules--formule-pizza-boisson-ou-dessert" aria-label="Choisir et ajouter Formule pizza + boisson ou dessert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule pizza complete 1 pizza individuelle, 1 salade laitue, 3 crudites, 1 dessert, 1 jus au choix (canette 33 cl ou petit jus local)"><div class="nom">Formule pizza complète</div><div class="desc">1 pizza individuelle, 1 salade laitue, 3 crudités, 1 dessert, 1 jus au choix (canette 33 cl ou petit jus local)</div><span class="prix">16,00 €</span><button class="ajout" type="button" data-formule="formules--formule-pizza-complete" aria-label="Choisir et ajouter Formule pizza complète"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule petite salade riz, pates, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule petite salade</div><div class="desc">Riz, pâtes, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">12,90 €</span><button class="ajout" type="button" data-formule="formules--formule-petite-salade" aria-label="Choisir et ajouter Formule petite salade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule grande salade riz, pates, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule grande salade</div><div class="desc">Riz, pâtes, quinoa ou pomme de terre, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">15,90 €</span><button class="ajout" type="button" data-formule="formules--formule-grande-salade" aria-label="Choisir et ajouter Formule grande salade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule tagliatelles bolognaise, carbonara, crevettes ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule tagliatelles</div><div class="desc">Bolognaise, carbonara, crevettes ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">15,90 €</span><button class="ajout" type="button" data-formule="formules--formule-tagliatelles" aria-label="Choisir et ajouter Formule tagliatelles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
+        <li class="plat" data-texte="formule lasagnes bolognaise ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert"><div class="nom">Formule lasagnes</div><div class="desc">Bolognaise ou saumon, 1 jus au choix (canette 33 cl ou petit jus local), 1 dessert</div><span class="prix">16,90 €</span><button class="ajout" type="button" data-formule="formules--formule-lasagnes" aria-label="Choisir et ajouter Formule lasagnes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></li>
       </ul>
     </section>
 
@@ -488,19 +496,19 @@
 <nav class="dock" aria-label="Actions rapides">
   <a class="btn ghost" href="carte.html">La carte</a>
   <button class="btn ghost" type="button" data-appel>Appeler</button>
-  <button class="btn panier-dock" type="button" data-panier>Panier <span class="nb" data-n="0">0</span></button>
+  <button class="btn panier-dock est-vide" type="button" data-panier aria-label="Panier vide"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="lbl">Panier</span><span class="nb" data-n="0">0</span><span class="tot"></span></button>
 </nav>
 <footer class="pied wrap">
   <div class="max">
     <div class="pied-grille">
       <div><img class="logo-pied" src="assets/img/logo-pizza-lyght-crop-240.webp" alt="Pizza Lyght" width="120" height="80" loading="lazy"><p>L’important c’est le goût !<br>Pizzas artisanales à Cayenne, Kourou et Saint-Laurent-du-Maroni.</p></div>
-      <div><h4>La carte</h4><ul>
+      <div><h2 class="pied-titre">La carte</h2><ul>
         <li><a class="lien" href="carte.html#pizzas">Pizzas</a></li><li><a class="lien" href="carte.html#salades">Salades</a></li><li><a class="lien" href="carte.html#paninis">Paninis</a></li><li><a class="lien" href="carte.html#formules">Formules</a></li><li><a class="lien" href="carte.html#boissons">Boissons</a></li></ul></div>
-      <div><h4>Pizzerias</h4><ul>
+      <div><h2 class="pied-titre">Pizzerias</h2><ul>
         <li><a class="lien" href="cayenne.html">Cayenne</a> · <a class="lien" href="https://www.facebook.com/pizzalyghtcayenne" target="_blank" rel="noopener">Facebook</a></li>
         <li><a class="lien" href="kourou.html">Kourou</a> · <a class="lien" href="https://www.facebook.com/profile.php?id=100048098959605" target="_blank" rel="noopener">Facebook</a></li>
         <li><a class="lien" href="saint-laurent.html">Saint-Laurent</a> · <a class="lien" href="https://www.facebook.com/pizzalyght" target="_blank" rel="noopener">Facebook</a></li></ul></div>
-      <div><h4>Informations</h4><ul>
+      <div><h2 class="pied-titre">Informations</h2><ul>
         <li><a class="lien" href="https://www.pizzalyght.fr/mentions-legales" target="_blank" rel="noopener">Mentions légales</a></li>
         <li><a class="lien" href="https://www.pizzalyght.fr/cgv" target="_blank" rel="noopener">Conditions générales de vente</a></li>
         <li><a class="lien" href="https://www.pizzalyght.fr/online-ordering" target="_blank" rel="noopener">Commande en ligne actuelle</a></li></ul></div>
@@ -512,9 +520,10 @@
     </div>
   </div>
 </footer>
+<button class="panier-flottant" type="button" data-panier hidden><span class="nb" data-n="0">0</span><span><span class="lib">article</span> · voir le panier</span><span class="tot prix"></span></button>
 <div class="voile" aria-hidden="true"></div>
 <aside class="tiroir" id="panier" role="dialog" aria-modal="true" aria-labelledby="panier-titre">
-  <div class="tiroir-tete"><h2 id="panier-titre">Votre commande</h2><button class="fermer" type="button" data-fermer aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  <div class="tiroir-tete"><h2 id="panier-titre" tabindex="-1">Votre commande</h2><button class="fermer" type="button" data-fermer aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   <div class="tiroir-corps"></div>
   <div class="tiroir-pied"></div>
 </aside>

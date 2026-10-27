@@ -2,21 +2,22 @@
 (function () {
   var PL = window.PL, $ = PL.$, $$ = PL.$$;
 
-  $$('img[data-pizza]').forEach(function (img) { var it = PL.trouverItem(img.getAttribute('data-pizza')); if (it) img.src = PL.art.dataUri(it); });
 
-  /* Filtres et recherche */
-  var actifs = [], q = '', minuteur = 0;
+  /* Filtres et recherche. Recherche tolérante : accents, apostrophes et pluriels ignorés. */
+  function normer(s) { return PL.art.norm(s).replace(/[’'`´-]/g, ' ').replace(/\b(\w{3,}?)(s|x)\b/g, '$1').replace(/\s+/g, ' ').trim(); }
+  $$('.carte-pizza, .plat').forEach(function (el) { el._t = normer(el.getAttribute('data-texte') || ''); });
+  var actifs = [], q = '', minuteur = 0, signature = '';
   function appliquer() {
-    var nq = PL.art.norm(q), total = 0;
+    var nq = normer(q), total = 0, sig = [];
     $$('[data-rubrique]').forEach(function (sec) {
       var vis = 0;
       $$('.carte-pizza, .plat', sec).forEach(function (el) {
         var estPizza = el.classList.contains('carte-pizza');
         var f = ' ' + (el.getAttribute('data-filtres') || '') + ' ';
         var okF = !actifs.length || (estPizza && actifs.every(function (x) { return f.indexOf(' ' + x + ' ') >= 0; }));
-        var okQ = !nq || (el.getAttribute('data-texte') || '').indexOf(nq) >= 0;
+        var okQ = !nq || nq.split(' ').every(function (m) { return el._t.indexOf(m) >= 0; });
         el.hidden = !(okF && okQ);
-        if (!el.hidden) { vis++; if (window.gsap) gsap.set(el, { clearProps: 'opacity,transform' }); }
+        if (!el.hidden) { vis++; sig.push(1); } else sig.push(0);
       });
       sec.hidden = vis === 0;
       var l = $('[data-lien="' + sec.id + '"]'); if (l) l.hidden = vis === 0;
@@ -25,7 +26,9 @@
     var a = $('.aucun');
     a.hidden = total > 0;
     if (!total) a.textContent = 'Aucun plat ne correspond' + (q ? ' à « ' + q + ' »' : '') + (actifs.length ? ' avec ces filtres' : '') + '. Essayez un autre mot ou retirez un filtre.';
-    if (window.ScrollTrigger) ScrollTrigger.refresh();
+    /* Recalcul des déclencheurs seulement si la liste affichée a changé */
+    var s2 = sig.join('');
+    if (s2 !== signature) { signature = s2; if (window.ScrollTrigger) ScrollTrigger.refresh(); }
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-filtre]');
@@ -65,10 +68,11 @@
     gsap.to('.pizza-cote', { yPercent: 25, ease: 'none', scrollTrigger: { trigger: '.carte-hero', start: 'top top', end: 'bottom top', scrub: true } });
     var bc = $('.carte-hero .hero-fond canvas'); if (bc) PL.jeter(PL.braises(bc, { n: 46, suivre: true }));
     $$('.banniere img').forEach(function (im) { gsap.fromTo(im, { yPercent: -18 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: im.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } }); });
-    var items = $$('.carte-pizza, .plat');
-    gsap.set(items, { y: 30, opacity: 0 });
-    ScrollTrigger.batch(items, { start: 'top 94%', once: true, onEnter: function (b) { gsap.to(b, { y: 0, opacity: 1, duration: .7, ease: 'power3.out', stagger: .05, overwrite: true }); } });
-    PL.jeter(function () { gsap.set(items, { clearProps: 'opacity,transform' }); });
+    /* Une apparition par rubrique (et non par plat) : bien moins de déclencheurs à suivre */
+    $$('.grille-pizzas, .liste-plats').forEach(function (bloc) {
+      var enfants = bloc.children;
+      gsap.from(enfants, { y: 30, opacity: 0, duration: .7, ease: 'power3.out', stagger: { each: .04, from: 'start' }, clearProps: 'opacity,transform', scrollTrigger: { trigger: bloc, start: 'top 90%', once: true } });
+    });
   });
 
   /* Lien direct vers une rubrique (#salades…) */

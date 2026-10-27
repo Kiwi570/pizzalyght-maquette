@@ -114,7 +114,7 @@
   var categories = [
     {
       id: 'pizzas', titre: 'Pizzas', accroche: 'Pâte et sauce tomate maison.',
-      photo: { base: 'pizza-olives-granit', w: [640, 1107], alt: 'Pizza gratinée aux olives noires, photo Pizza Lyght' },
+      photo: { base: 'pizza-pelle-fond-noir', w: [640, 1280], alt: 'Pizza aux tomates, olives et poivrons sur une pelle en bois, photo Pizza Lyght' },
       items: pizzas.concat([allasani]), pizza: true
     },
     {
@@ -174,7 +174,7 @@
       ]
     },
     {
-      id: 'soupes', titre: 'Soupes', accroche: 'Légumes du marché et viande bouchère.',
+      id: 'soupes', titre: 'Soupes', accroche: 'Légumes du marché ; viande de bœuf pour la soupe créole.',
       photo: { base: 'veloute-croutons', w: [640, 1125], alt: 'Velouté avec crème, fromage râpé et croûtons' },
       items: [
         I('Velouté de légumes', 'avec sa crème, son fromage et ses croûtons', 850),
@@ -248,13 +248,33 @@
     c.items.forEach(function (it) { it.id = c.id + '--' + slug(it.nom); it.cat = c.id; });
   });
 
+  /* Choix à faire pour chaque formule. Listes tirées de la carte ; produits éligibles exacts à confirmer. */
+  var cat = function (id) { for (var i = 0; i < categories.length; i++) if (categories[i].id === id) return categories[i].items; return []; };
+  var pizzasF = cat('pizzas').filter(function (p) { return !p.allasani; }).map(function (p) { return p.nom.replace('Pizza ', ''); });
+  var boissonsF = cat('boissons').filter(function (b) { return /canette 33 cl/.test(b.desc) || /^(Coca|Orangina|Guarana|Lipton pêche)$/.test(b.nom); }).map(function (b) { return b.nom; }).concat(['Petit jus local']);
+  var dessertsF = cat('desserts').map(function (x) { return x.nom; });
+  var PZ = { cle: 'pizza', label: 'Pizza individuelle', options: pizzasF };
+  var BO = { cle: 'boisson', label: 'Boisson', options: boissonsF };
+  var DE = { cle: 'dessert', label: 'Dessert', options: dessertsF };
+  var BASE = { cle: 'base', label: 'Base de la salade', options: ['Riz', 'Pâtes', 'Quinoa', 'Pomme de terre'] };
+  var choixFormules = {
+    'Formule pizza': [PZ],
+    'Formule pizza + boisson ou dessert': [PZ, { cle: 'extra', label: 'Boisson ou dessert', groupes: [['Boissons', boissonsF], ['Desserts', dessertsF]] }],
+    'Formule pizza complète': [PZ, BO, DE],
+    'Formule petite salade': [BASE, BO, DE],
+    'Formule grande salade': [BASE, BO, DE],
+    'Formule tagliatelles': [{ cle: 'recette', label: 'Recette', options: ['Bolognaise', 'Carbonara', 'Crevettes', 'Saumon'] }, BO, DE],
+    'Formule lasagnes': [{ cle: 'recette', label: 'Recette', options: ['Bolognaise', 'Saumon'] }, BO, DE]
+  };
+  cat('formules').forEach(function (f) { f.choix = choixFormules[f.nom] || null; });
+
   /* Images Grok déjà livrées (nom de fichier sans extension). Vide tant qu'elles ne sont pas arrivées :
      les emplacements gardent leur visuel provisoire dessiné en code. Nom du fichier -> largeurs disponibles. */
   var grok = {
     'g-hero-braises-16x9': [800, 1168], 'g-hero-braises-9x16': [657],
     'g-fumee-boucan-16x9': [800, 1168], 'g-fumee-noir-9x16': [657],
     'g-farine-texture-16x9': [1168],
-    'g-route-nuit-16x9': [800, 1168],
+    'g-route-nuit-16x9': [800, 1168], 'g-route-nuit-3x4': [600],
     'g-bokeh-chaud-16x9': [800, 1168], 'g-bokeh-chaud-9x16': [657],
     'g-pelle-bois-1x1': [702]
   };
