@@ -125,8 +125,10 @@
       var ov = $('.ouverture');
       var finIntro = function () { html.classList.remove('intro'); try { localStorage.setItem('pl-intro-vu', String(Date.now())); sessionStorage.setItem('pl-intro', '1'); } catch (e) { } };
       var tl = gsap.timeline({ onComplete: finIntro });
-      tl.fromTo('.ouverture .fente', { scale: 0 }, { scale: 1, duration: .3, ease: 'back.out(3)' })
-        .to('.ouverture .fente', { width: '64vw', marginLeft: '-32vw', height: 3, marginTop: -1.5, duration: .45, ease: 'expo.inOut' })
+      /* La fente est dessinée à sa taille finale (64vw × 3 px) et animée en transform seulement : aucun décalage de mise en page */
+      var fw = innerWidth * .64;
+      tl.fromTo('.ouverture .fente', { scaleX: 0, scaleY: 0 }, { scaleX: 10 / fw, scaleY: 10 / 3, duration: .3, ease: 'back.out(3)' })
+        .to('.ouverture .fente', { scaleX: 1, scaleY: 1, duration: .45, ease: 'expo.inOut' })
         .to('.ouverture img', { opacity: 1, y: -18, duration: .4, ease: 'power3.out' }, '-=.2')
         .to(ov, { clipPath: 'inset(50% 0 50% 0)', duration: .5, ease: 'expo.inOut' }, '+=.1');
       /* Un geste suffit pour passer l'ouverture */
@@ -190,7 +192,7 @@
       var tl2 = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: epingle
-          ? { trigger: scene, start: 'top top', end: '+=230%', pin: true, scrub: .8, anticipatePin: 1, onUpdate: function (s) { var p = s.progress; etape(p < .28 ? 0 : p < .52 ? 1 : p < .8 ? 2 : 3); } }
+          ? { trigger: scene, start: 'top top', end: '+=230%', pin: true, scrub: .8, onUpdate: function (s) { var p = s.progress; etape(p < .28 ? 0 : p < .52 ? 1 : p < .8 ? 2 : 3); } }
           : { trigger: '.atelier', start: 'top 85%', end: 'bottom 25%', scrub: .6, onUpdate: function (s) { var p = s.progress; etape(p < .28 ? 0 : p < .52 ? 1 : p < .8 ? 2 : 3); } }
       });
       gsap.set('.etape-photo', { opacity: 0, y: 40, rotate: -10 });
@@ -227,7 +229,7 @@
       var mm = gsap.matchMedia();
       mm.add('(min-width: 761px)', function () {
         var dist = function () { return Math.max(0, piste2.scrollWidth - $('.piste-wrap').clientWidth); };
-        var tw = gsap.to(piste2, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: pays, start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: .6, invalidateOnRefresh: true, anticipatePin: 1 } });
+        var tw = gsap.to(piste2, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: pays, start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: .6, invalidateOnRefresh: true } });
         /* Au clavier : amener la carte qui prend le focus dans l'écran */
         var auFocus = function (e) {
           var card = e.target.closest('.recette'); if (!card) return;

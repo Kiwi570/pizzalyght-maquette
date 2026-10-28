@@ -756,9 +756,33 @@
       '<span class="braise-route" aria-hidden="true" style="position:absolute;left:0;top:0;width:14px;height:14px;margin:-7px;border-radius:50%;background:#FFD0A8;box-shadow:0 0 12px 5px rgba(255,91,31,.9),0 0 40px 12px rgba(255,91,31,.4);opacity:0"></span>';
   };
 
+  /* ---------- Barres fixes : hauteurs mesurées (--entete-h, --barres-h) ; barre du bas hors du héros, du pied et de la 404 ---------- */
+  function barres() {
+    var n = $('.nav'), dock = $('.dock');
+    var mesure = function () {
+      if (n) html.style.setProperty('--entete-h', (n.offsetTop + n.offsetHeight) + 'px');
+      html.style.setProperty('--barres-h', (dock && getComputedStyle(dock).display !== 'none' ? dock.offsetHeight : 0) + 'px');
+    };
+    mesure();
+    window.addEventListener('resize', mesure);
+    if (window.ResizeObserver) { var ro = new ResizeObserver(mesure); if (n) ro.observe(n); if (dock) ro.observe(dock); }
+    if (!dock) return;
+    if ($('#titre-404')) { dock.classList.add('range'); return; }
+    var zones = $$('.hero, .carte-hero, .r-hero, .pied');
+    if (!zones.length || !window.IntersectionObserver) return;
+    var vues = [];
+    dock.classList.add('range');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var i = vues.indexOf(e.target); if (e.isIntersecting && i < 0) vues.push(e.target); if (!e.isIntersecting && i >= 0) vues.splice(i, 1); });
+      dock.classList.toggle('range', vues.length > 0);
+    });
+    zones.forEach(function (z) { io.observe(z); });
+  }
+
   /* ---------- Démarrage ---------- */
   function demarrer() {
     html.classList.remove('sans-js');
+    barres();
     if (window.gsap) { gsap.registerPlugin(ScrollTrigger); if (window.SplitText) gsap.registerPlugin(SplitText); }
     majCalmeBtn();
     $$('[data-choisir-ville]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-choisir-ville') === PL.ville)); });
